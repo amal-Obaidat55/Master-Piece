@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Overview — Admin — SpeakUp </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/shell.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script>
+        document.documentElement.classList.add('js');
+        try {
+            var t = localStorage.getItem('hr_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.dataset.theme = t;
+        } catch (e) { }
+    </script>
+</head>
+
+
+
+<body data-shell="admin">
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar__top">
+                <a class="brand" href="index.html" aria-label="SpeakUp  home"><svg class="brandMark" aria-hidden="true">
+                        <use href="#i-logo" />
+                    </svg><span class="brandName">SpeakUp </span></a>
+                <button class="iconBtn menu-close" type="button" data-action="menu-close" aria-label="Close menu"><svg
+                        class="icon" aria-hidden="true">
+                        <use href="#i-x" />
+                    </svg></button>
+            </div>
+            <nav class="side-nav" aria-label="Admin">
+                <a class="side-link is-active" href="admin.html#overview" title="Overview"><svg class="icon"
+                        aria-hidden="true">
+                        <use href="#i-chart" />
+                    </svg><span class="side-label">Overview</span></a>
+                <a class="side-link" href="admin-users.html" title="Users"><svg class="icon" aria-hidden="true">
+                        <use href="#i-users" />
+                    </svg><span class="side-label">Users</span></a>
+                <a class="side-link" href="admin-interviews.html" title="Interviews"><svg class="icon"
+                        aria-hidden="true">
+                        <use href="#i-mic" />
+                    </svg><span class="side-label">Interviews</span></a>
+                <a class="side-link" href="admin-questions.html" title="Question bank"><svg class="icon"
+                        aria-hidden="true">
+                        <use href="#i-book" />
+                    </svg><span class="side-label">Question bank</span></a>
+                <a class="side-link" href="admin-options.html" title="Interview options"><svg class="icon"
+                        aria-hidden="true">
+                        <use href="#i-layers" />
+                    </svg><span class="side-label">Interview options</span></a>
+                <a class="side-link" href="admin.html#criteria" title="Scoring criteria"><svg class="icon"
+                        aria-hidden="true">
+                        <use href="#i-target" />
+                    </svg><span class="side-label">Scoring criteria</span></a>
+                <a class="side-link" href="admin.html#schedules" title="Schedules"><svg class="icon" aria-hidden="true">
+                        <use href="#i-calendar" />
+                    </svg><span class="side-label">Schedules</span></a>
+                <a class="side-link" href="admin.html#cvs" title="CVs and job descriptions"><svg class="icon"
+                        aria-hidden="true">
+                        <use href="#i-file" />
+                    </svg><span class="side-label">CVs and job descriptions</span></a>
+                <a class="side-link" href="admin.html#content" title="Site content"><svg class="icon"
+                        aria-hidden="true">
+                        <use href="#i-megaphone" />
+                    </svg><span class="side-label">Site content</span></a>
+                <a class="side-link" href="admin.html#settings" title="Settings"><svg class="icon" aria-hidden="true">
+                        <use href="#i-settings" />
+                    </svg><span class="side-label">Settings</span></a>
+            </nav>
+            <div class="side-foot">
+                <a class="side-link" href="index.html"><svg class="icon" aria-hidden="true">
+                        <use href="#i-arrow-left" />
+                    </svg><span class="side-label">Back to app</span></a>
+                <a class="side-link" href="index.html"><svg class="icon" aria-hidden="true">
+                        <use href="#i-logout" />
+                    </svg><span class="side-label">Log out</span></a>
+            </div>
+        </aside>
+        <div class="app-main">
+            <header class="topbar">
+                <button class="iconBtn menu-btn" type="button" data-action="menu" aria-label="Open menu"><svg
+                        class="icon" aria-hidden="true">
+                        <use href="#i-menu" />
+                    </svg></button>
+                <a class="brand brand--mobile" href="index.html" aria-label="SpeakUp  home"><svg class="brandMark"
+                        aria-hidden="true">
+                        <use href="#i-logo" />
+                    </svg><span class="brandName">SpeakUp </span></a>
+                <span class="topbar__crumb">Admin · Overview</span>
+                <div class="topbar__spacer"></div>
+                <button class="iconBtn theme-btn" type="button" data-action="theme" aria-label="Switch theme"><span
+                        class="i-sun"><svg class="icon" aria-hidden="true">
+                            <use href="#i-sun" />
+                        </svg></span><span class="i-moon"><svg class="icon" aria-hidden="true">
+                            <use href="#i-moon" />
+                        </svg></span></button>
+
+                <div class="dd">
+                    <button class="iconBtn" type="button" data-dropdown="notif-panel" aria-label="Notifications"><svg
+                            class="icon" aria-hidden="true">
+                            <use href="#i-bell" />
+                        </svg><span class="notif-dot"></span></button>
+                    <div class="dropdown-panel notif" id="notif-panel" hidden>
+                        <div class="dropdown-panel__head"><strong>Notifications</strong><button class="link small"
+                                type="button" id="notif-read">Mark all read</button></div>
+                        <div class="notif__list">
+                            <a class="notif__item is-unread" href="dashboard.html"><span>Welcome to SpeakUp ! Your
+                                    demo workspace is
+                                    ready.</span><time class="small faint">Today</time></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dd">
+                    <button class="user-chip" type="button" data-dropdown="user-panel" aria-label="Account menu"><span
+                            class="avatar">AM</span><span class="user-chip__name hide-sm">Alex Morgan</span><svg
+                            class="icon hide-sm" aria-hidden="true">
+                            <use href="#i-chevron-down" />
+                        </svg></button>
+                    <div class="dropdown-panel user-menu" id="user-panel" hidden>
+                        <div class="user-menu__who"><strong>Alex Morgan</strong><span
+                                class="small muted">alex@example.com</span>
+                        </div>
+                        <a class="menu-item" href="profile.html"><svg class="icon" aria-hidden="true">
+                                <use href="#i-user" />
+                            </svg> Profile</a>
+                        <a class="menu-item" href="admin.html"><svg class="icon" aria-hidden="true">
+                                <use href="#i-shield" />
+                            </svg> Admin panel</a><!-- يظهر للأدمن فقط -->
+                        <a class="menu-item" href="index.html"><svg class="icon" aria-hidden="true">
+                                <use href="#i-logout" />
+                            </svg> Log out</a>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page" id="main">
+                <div data-view="users" hidden>
+                    <div class="page-head view-in">
+                        <div class="page-head__title">
+                            <h1 class="h1">Users</h1>
+                            <p class="lead">Create, edit, suspend or remove accounts.</p>
+                        </div>
+                    </div>
+                    <section class="panel view-in" aria-label="Users">
+                        <div class="panel__head">
+                            <div class="toolbar">
+                                <form class="filters" role="search" novalidate>
+                                    <div class="input-wrap"><svg class="icon" aria-hidden="true">
+                                            <use href="#i-search" />
+                                        </svg><input class="input" type="search" name="q" placeholder="Search"
+                                            aria-label="Search Users">
+                                    </div><select class="select" aria-label="All roles">
+                                        <option value="">All roles</option>
+                                        <option>User</option>
+                                        <option>Admin</option>
+                                    </select><select class="select" aria-label="All statuses">
+                                        <option value="">All statuses</option>
+                                        <option>Active</option>
+                                        <option>Suspended</option>
+                                    </select>
+                                </form><button class="btn btnAccent btn--sm" type="button" data-open="modal-user"
+                                    data-title="Add user"><svg class="icon" aria-hidden="true">
+                                        <use href="#i-plus" />
+                                    </svg> Add user</button>
+                            </div>
+                        </div>
+                        <div class="panel__body panel__body--flush table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col" class="num">Interviews</th>
+                                        <th scope="col">Joined</th>
+                                        <th scope="col"><span class="sr-only">Actions</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-row data-name="Alex Morgan" data-email="alex@example.com" data-role="user"
+                                        data-status="active">
+                                        <td data-label="Name">
+                                            <div class="item"><span class="avatar"
+                                                    style="width:34px;height:34px;font-size:13px">AM</span><span
+                                                    class="item__main"><span class="item__title truncate">Alex
+                                                        Morgan</span><span
+                                                        class="item__meta truncate">alex@example.com</span></span>
+                                            </div>
+                                        </td>
+                                        <td data-label="Role"><span class="pill">User</span></td>
+                                        <td data-label="Status"><span class="pill pill--ok">Active</span></td>
+                                        <td data-label="Interviews" class="num">8</td>
+                                        <td data-label="Joined">Oct 10, 2026</td>
+                                        <td data-label="Actions">
+                                            <div class="actions"><button class="btn btnGhost btn--sm" type="button"
+                                                    data-toast="User suspended.">Suspend</button><button
+                                                    class="btn btnGhost btn--sm" type="button"
+                                                    data-toast="Password reset email sent.">Send reset
+                                                    link</button><button class="iconBtn" type="button"
+                                                    data-open="modal-user" data-edit data-title="Edit user"
+                                                    aria-label="Edit"><svg class="icon" aria-hidden="true">
+                                                        <use href="#i-edit" />
+                                                    </svg></button><button class="iconBtn" type="button"
+                                                    data-open="modal-delete" aria-label="Delete"><svg class="icon"
+                                                        aria-hidden="true">
+                                                        <use href="#i-trash" />
+                                                    </svg></button></div>
+                                        </td>
+                                    </tr>
+                                    <tr data-row data-name="Jamie Lee" data-email="jamie@example.com" data-role="admin"
+                                        data-status="active">
+                                        <td data-label="Name">
+                                            <div class="item"><span class="avatar"
+                                                    style="width:34px;height:34px;font-size:13px">JL</span><span
+                                                    class="item__main"><span class="item__title truncate">Jamie
+                                                        Lee</span><span
+                                                        class="item__meta truncate">jamie@example.com</span></span>
+                                            </div>
+                                        </td>
+                                        <td data-label="Role"><span class="pill">Admin</span></td>
+                                        <td data-label="Status"><span class="pill pill--ok">Active</span></td>
+                                        <td data-label="Interviews" class="num">3</td>
+                                        <td data-label="Joined">Oct 10, 2026</td>
+                                        <td data-label="Actions">
+                                            <div class="actions"><button class="btn btnGhost btn--sm" type="button"
+                                                    data-toast="User suspended.">Suspend</button><button
+                                                    class="btn btnGhost btn--sm" type="button"
+                                                    data-toast="Password reset email sent.">Send reset
+                                                    link</button><button class="iconBtn" type="button"
+                                                    data-open="modal-user" data-edit data-title="Edit user"
+                                                    aria-label="Edit"><svg class="icon" aria-hidden="true">
+                                                        <use href="#i-edit" />
+                                                    </svg></button><button class="iconBtn" type="button"
+                                                    data-open="modal-delete" aria-label="Delete"><svg class="icon"
+                                                        aria-hidden="true">
+                                                        <use href="#i-trash" />
+                                                    </svg></button></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+        <div class="modal" id="modal-delete" data-removes data-toast="Deleted." role="dialog" aria-modal="true"
+    aria-labelledby="modal-delete-t" hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-delete-t" data-title>Delete this item?</h2><button class="iconBtn" type="button"
+          data-close aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <p class="muted">It will be removed. This can’t be undone.</p>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--danger" type="button" data-confirm>Delete</button>
+      </div>
+    </div>
+  </div>
+        <div class="modal" id="modal-user" role="dialog" aria-modal="true" aria-labelledby="modal-user-t" hidden>
+            <div class="modal__dialog">
+                <div class="modal__head">
+                    <h2 class="h3" id="modal-user-t" data-title>Add user</h2><button class="iconBtn" type="button"
+                        data-close aria-label="Close"><svg class="icon" aria-hidden="true">
+                            <use href="#i-x" />
+                        </svg></button>
+                </div>
+                <div class="modal__body">
+                    <form class="form-grid" novalidate onsubmit="return false">
+                        <div class="field"><label class="field__label" for="f-name">Full name</label><input
+                                class="input" id="f-name" name="name" type="text" required minlength="2" maxlength="80">
+                        </div>
+                        <div class="field"><label class="field__label" for="f-email">Email</label><input class="input"
+                                id="f-email" name="email" type="email" required></div>
+                        <div class="field"><label class="field__label" for="f-role">Role</label><select class="select"
+                                id="f-role" name="role" required>
+                                <option value="">Choose one</option>
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select></div>
+                        <div class="field"><label class="field__label" for="f-status">Status</label><select
+                                class="select" id="f-status" name="status" required>
+                                <option value="">Choose one</option>
+                                <option value="active">Active</option>
+                                <option value="suspended">Suspended</option>
+                            </select></div>
+                        <div class="field" data-create-only><label class="field__label"
+                                for="f-password">Password</label><input class="input" id="f-password" name="password"
+                                type="password" required minlength="8" autocomplete="new-password"><span
+                                class="field__hint">At least 8 characters. The
+                                user can change it
+                                later.</span></div>
+                    </form>
+                </div>
+                <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+                    <button class="btn btn--primary" type="button" data-save="Saved.">Save</button>
+                </div>
+            </div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden"
+            aria-hidden="true" focusable="false">
+            <symbol id="i-logo" viewBox="0 0 32 32">
+                <rect width="32" height="32" rx="9" fill="#FFD93D" stroke="none" />
+                <path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#0D1128" stroke-width="3.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </symbol>
+            <symbol id="i-alert" viewBox="0 0 24 24">
+                <path d="M12 4 2.8 20h18.4z" />
+                <path d="M12 10v4.5M12 17.4v.2" />
+            </symbol>
+            <symbol id="i-arrow-left" viewBox="0 0 24 24">
+                <path d="M19 12H5M11 6l-6 6 6 6" />
+            </symbol>
+            <symbol id="i-bell" viewBox="0 0 24 24">
+                <path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15z" />
+                <path d="M10 21a2 2 0 0 0 4 0" />
+            </symbol>
+            <symbol id="i-book" viewBox="0 0 24 24">
+                <path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z" />
+                <path d="M5 17a3 3 0 0 1 3-3h11" />
+            </symbol>
+            <symbol id="i-calendar" viewBox="0 0 24 24">
+                <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+                <path d="M3.5 10h17M8 3v4M16 3v4" />
+            </symbol>
+            <symbol id="i-chart" viewBox="0 0 24 24">
+                <path d="M5 20V10M12 20V4M19 20v-7" />
+            </symbol>
+            <symbol id="i-check-circle" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <path d="m8 12.5 3 3 5-6" />
+            </symbol>
+            <symbol id="i-chevron-down" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" />
+            </symbol>
+            <symbol id="i-edit" viewBox="0 0 24 24">
+                <path d="M4 20h4L19 9l-4-4L4 16z" />
+                <path d="m13.5 6.5 4 4" />
+            </symbol>
+            <symbol id="i-eye" viewBox="0 0 24 24">
+                <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" />
+                <circle cx="12" cy="12" r="3" />
+            </symbol>
+            <symbol id="i-eye-off" viewBox="0 0 24 24">
+                <path
+                    d="M3 3l18 18M10.6 5.7A9.6 9.6 0 0 1 12 5.5c6 0 9.5 6.5 9.5 6.5a16 16 0 0 1-3.2 3.9M6.6 7.1A16.3 16.3 0 0 0 2.5 12S6 18.5 12 18.5a9.5 9.5 0 0 0 4-.9M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+            </symbol>
+            <symbol id="i-file" viewBox="0 0 24 24">
+                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                <path d="M14 3v5h5M9 13h6M9 17h6" />
+            </symbol>
+            <symbol id="i-info" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 11v5M12 7.8v.2" />
+            </symbol>
+            <symbol id="i-layers" viewBox="0 0 24 24">
+                <path d="m12 3 9 5-9 5-9-5z" />
+                <path d="m3 13 9 5 9-5" />
+            </symbol>
+            <symbol id="i-logout" viewBox="0 0 24 24">
+                <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4" />
+                <path d="M15 8l4 4-4 4M19 12H9" />
+            </symbol>
+            <symbol id="i-megaphone" viewBox="0 0 24 24">
+                <path d="M3 10v4a1 1 0 0 0 1 1h3l8 4V5L7 9H4a1 1 0 0 0-1 1z" />
+                <path d="M19 9a4 4 0 0 1 0 6" />
+            </symbol>
+            <symbol id="i-menu" viewBox="0 0 24 24">
+                <path d="M4 7h16M4 12h16M4 17h16" />
+            </symbol>
+            <symbol id="i-mic" viewBox="0 0 24 24">
+                <rect x="9" y="3" width="6" height="11" rx="3" />
+                <path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7" />
+            </symbol>
+            <symbol id="i-moon" viewBox="0 0 24 24">
+                <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+            </symbol>
+            <symbol id="i-plus" viewBox="0 0 24 24">
+                <path d="M12 5v14M5 12h14" />
+            </symbol>
+            <symbol id="i-search" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="6.5" />
+                <path d="m16 16 4.5 4.5" />
+            </symbol>
+            <symbol id="i-settings" viewBox="0 0 24 24">
+                <path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h9M19 18h1" />
+                <circle cx="15" cy="6" r="3" />
+                <circle cx="9" cy="12" r="3" />
+                <circle cx="16" cy="18" r="3" />
+            </symbol>
+            <symbol id="i-shield" viewBox="0 0 24 24">
+                <path d="M12 3 4.5 6v5.5c0 4.6 3.2 8 7.5 9.5 4.3-1.5 7.5-4.9 7.5-9.5V6z" />
+                <path d="m9 12 2.2 2.2L15.5 10" />
+            </symbol>
+            <symbol id="i-sun" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                    d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+            </symbol>
+            <symbol id="i-target" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="5" />
+                <circle cx="12" cy="12" r="1.2" />
+            </symbol>
+            <symbol id="i-trash" viewBox="0 0 24 24">
+                <path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" />
+            </symbol>
+            <symbol id="i-upload" viewBox="0 0 24 24">
+                <path d="M12 16V4M7 9l5-5 5 5" />
+                <path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" />
+            </symbol>
+            <symbol id="i-user" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21a8 8 0 0 1 16 0" />
+            </symbol>
+            <symbol id="i-users" viewBox="0 0 24 24">
+                <circle cx="9" cy="8" r="3.5" />
+                <path d="M2.5 20a6.5 6.5 0 0 1 13 0" />
+                <path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8" />
+            </symbol>
+            <symbol id="i-x" viewBox="0 0 24 24">
+                <path d="M6 6l12 12M18 6 6 18" />
+            </symbol>
+        </svg>
+
+        <script src="js/main.js"></script>
+        <script src="js/admin.js"></script>
+    </div>
+</body>
+
+</html>

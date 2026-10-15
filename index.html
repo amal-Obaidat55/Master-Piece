@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpeakUp — Practice interviews until they feel easy</title>
+  <meta name="description"
+    content="Practice job interviews out loud, get your CV matched to the job description, and learn from an AI scorecard after every session.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400..700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/shell.css">
+  <link rel="stylesheet" href="css/home.css">
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('hr_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = t;
+    } catch (e) { }
+  </script>
+</head>
+
+<body data-shell="public" id="top">
+  <div class="scrollProgress" aria-hidden="true"><i></i></div>
+  <header class="site-header">
+    <div class="container siteHeader"><a class="brand" href="index.html" aria-label="SpeakUp  home"><svg
+          class="brandMark" aria-hidden="true">
+          <use href="#i-logo" />
+        </svg><span class="brandName">SpeakUp</span></a>
+      <nav class="siteNav hide-sm" aria-label="Main"><a href="index.html#how">How it works</a><a
+          href="index.html#features">Features</a><a href="index.html#for">Who it’s for</a><a
+          href="index.html#faq">FAQ</a></nav>
+      <div class="siteHearderActions">
+        <button class="iconBtn theme-btn" type="button" data-action="theme" aria-label="Switch theme"><span
+            class="i-sun"><svg class="icon" aria-hidden="true">
+              <use href="#i-sun" />
+            </svg></span><span class="i-moon"><svg class="icon" aria-hidden="true">
+              <use href="#i-moon" />
+            </svg></span></button>
+        <a class="btn btnGhost btn--sm hide-sm" href="auth.html">Log in</a>
+        <a class="btn btnAccent btn--sm" href="auth.html?mode=signup">Get started</a>
+        <button class="iconBtn show-sm" type="button" data-action="mobileMenu" aria-label="Open menu"
+          aria-expanded="false"><svg class="icon" aria-hidden="true">
+            <use href="#i-menu" />
+          </svg></button>
+      </div>
+    </div>
+    <div class="mobileMenu" id="mobileMenu" hidden>
+      <nav aria-label="Mobile"><a href="index.html#how">How it works</a><a href="index.html#features">Features</a><a
+          href="index.html#for">Who it’s for</a><a href="index.html#faq">FAQ</a><a href="auth.html">Log in</a></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    
+    <section class="hero" id="hero">
+      <video autoplay playsinline muted loop class="backVideo">
+            <source src="../videos/purple5.mp4" type="video/mp4" >
+      </video>
+      <div class="over"></div>
+      <div class="container heroGrid">
+        <div class="heroCopy">
+          <p class="heroKicker" data-hero-in style="--i:0">Interview practice for students and job seekers</p>
+          <h1 class="display heroTitle" aria-label="Walk in ready.">
+            <span class="line"><span data-hero-in style="--i:1">Walk in</span></span>
+            <span class="line"><span data-hero-in style="--i:2">ready<i class="hl-dot">.</i></span></span>
+          </h1>
+          <p class="lead heroLead" data-hero-in style="--i:3">Practice real interview questions out loud, match your
+            CV to the job you want, and get a scorecard that shows exactly what to fix next.</p>
+          <div class="row heroCTA" data-hero-in style="--i:4">
+            <a class="btn btnAccent lagreBtn" href="auth.html?mode=signup">Start practicing</a>
+            <a class="btn btnOutline lagreBtn hero__ghost" href="#how">See how it works</a>
+          </div>
+          <p class="heroNote small" data-hero-in style="--i:5">Free to start. Takes about two minutes to set up your
+            first interview.</p>
+        </div>
+
+        <div class="heroVisual" aria-hidden="true" data-hero-in style="--i:3">
+          <div class="room" id="hero-room">
+            <div class="roomBar">
+              <span class="roomRecord"><i></i>Recording</span>
+              <span class="roomTimer tnum" id="hero-timer">00:00</span>
+            </div>
+            <div class="roomQuestion">
+              <span class="room__label">Question</span>
+              <p id="hero-question"></p>
+            </div>
+            <div class="roomWave">
+              <span class="wave is-live"
+                id="hero-wave">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+              </span>
+            </div>
+            <div class="roomCritical">
+              <span><b>Clarity</b><i class="bar"><em></em></i></span>
+              <span><b>Structure</b><i class="bar"><em></em></i></span>
+              <span><b>Confidence</b><i class="bar"><em></em></i></span>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+
+      <a class="heroScroll" href="#how" aria-label="Scroll to how it works"><span></span></a>
+    </section>
+    
+    <section class="manifesto">
+      <div class="container">
+        <p class="manifesto__text" id="manifesto"
+          aria-label="Nobody is born good at interviews. People get good by answering out loud, hearing honest feedback, and trying again until the answer sounds like them.">
+          <span class="w" aria-hidden="true">Nobody</span> <span class="w" aria-hidden="true">is</span> <span class="w"
+            aria-hidden="true">born</span> <span class="w" aria-hidden="true">good</span> <span class="w"
+            aria-hidden="true">at</span> <span class="w" aria-hidden="true">interviews.</span> <span class="w"
+            aria-hidden="true">People</span> <span class="w" aria-hidden="true">get</span> <span class="w"
+            aria-hidden="true">good</span> <span class="w" aria-hidden="true">by</span> <span class="w"
+            aria-hidden="true">answering</span> <span class="w" aria-hidden="true">out</span> <span class="w"
+            aria-hidden="true">loud,</span> <span class="w" aria-hidden="true">hearing</span> <span class="w"
+            aria-hidden="true">honest</span> <span class="w" aria-hidden="true">feedback,</span> <span class="w"
+            aria-hidden="true">and</span> <span class="w" aria-hidden="true">trying</span> <span class="w"
+            aria-hidden="true">again</span> <span class="w" aria-hidden="true">until</span> <span class="w"
+            aria-hidden="true">the</span> <span class="w" aria-hidden="true">answer</span> <span class="w"
+            aria-hidden="true">sounds</span> <span class="w" aria-hidden="true">like</span> <span class="w"
+            aria-hidden="true">them.</span></p>
+      </div>
+    </section>
+
+    <section class="how" id="how" style="--n:4">
+      <div class="how__stick">
+        <div class="container how__grid">
+          <div class="how__left">
+            <h2 class="h1 how__title" data-reveal>From first setup to your next attempt</h2>
+
+            <ol class="how__steps" id="how-steps">
+              <li class="how__step is-active" data-i="0">
+                <span class="how__num">1</span>
+                <div>
+                  <h3 class="h3">Set up your interview</h3>
+                  <p>Choose the interview type, level, language and length. Add the job description so every question is
+                    about the job you want.</p>
+                </div>
+              </li>
+              <li class="how__step" data-i="1">
+                <span class="how__num">2</span>
+                <div>
+                  <h3 class="h3">Fix your CV first</h3>
+                  <p>Upload your CV and paste the job description. See what matches, what is missing, and get a stronger
+                    version to send.</p>
+                </div>
+              </li>
+              <li class="how__step" data-i="2">
+                <span class="how__num">3</span>
+                <div>
+                  <h3 class="h3">Answer in the interview room</h3>
+                  <p>Questions appear one at a time with a timer. Speak your answer the way you would on the day, then
+                    move on.</p>
+                </div>
+              </li>
+              <li class="how__step" data-i="3">
+                <span class="how__num">4</span>
+                <div>
+                  <h3 class="h3">Read your report, then go again</h3>
+                  <p>Get a score for each skill, written AI feedback on every answer, and a new interview scheduled when
+                    you are ready.</p>
+                </div>
+              </li>
+            </ol>
+            <div class="how__progress" aria-hidden="true"><i id="how-bar"></i></div>
+          </div>
+
+          <div class="how__stage" aria-hidden="true">
+            <div class="pane is-active" data-pane="0">
+              <div class="mock">
+                <div class="mock__row"><span class="mock__tag">Interview type</span>
+                  <div class="mock__pills"><i class="on"></i><i></i><i></i></div>
+                </div>
+                <div class="mock__row"><span class="mock__tag">Level</span>
+                  <div class="mock__pills"><i></i><i class="on"></i><i></i></div>
+                </div>
+                <div class="mock__row"><span class="mock__tag">Language</span>
+                  <div class="mock__pills"><i class="on"></i><i></i></div>
+                </div>
+                <div class="mock__row"><span class="mock__tag">Length</span>
+                  <div class="mock__slider"><u></u><b></b></div>
+                </div>
+                <div class="mock__block"><span class="mock__tag">Job description</span><i class="ln"></i><i
+                    class="ln"></i><i class="ln s"></i></div>
+                <div class="mock__btn">Start interview</div>
+              </div>
+            </div>
+            
+            <div class="pane" data-pane="1">
+              <div class="mock mock--cv">
+                <div class="cv">
+                  <i class="ln w60"></i><i class="ln s"></i><i class="ln"></i><i class="ln hit"></i><i class="ln"></i><i
+                    class="ln s"></i><i class="ln hit"></i><i class="ln"></i><i class="ln s"></i>
+                  <span class="cv__scan"></span>
+                </div>
+                <div class="cv__side">
+                  <span class="mock__tag">Matches the job</span>
+                  <div class="kw"><i class="ok"></i><i class="ok"></i><i class="ok"></i></div>
+                  <span class="mock__tag">Missing from your CV</span>
+                  <div class="kw"><i class="no"></i><i class="no"></i></div>
+                  <div class="mock__btn mock__btn--sm">Optimize CV</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="pane" data-pane="2">
+              <div class="mock mock--room">
+                <div class="roomBar"><span class="roomRecord"><i></i>Recording</span><span
+                    class="roomTimer tnum">Question 1 of 5</span></div>
+                <div class="mock__block"><i class="ln"></i><i class="ln w80"></i></div>
+                <span class="wave wave--big"
+                  id="stage-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <div class="mock__ctrl"><i></i><i class="main"></i><i></i></div>
+              </div>
+            </div>
+            
+            <div class="pane" data-pane="3">
+              <div class="mock mock--report">
+                <div class="rep__top">
+                  <div class="ring ring--md"><svg viewBox="0 0 120 120">
+                      <circle class="ring__track" cx="60" cy="60" r="52" pathLength="100" />
+                      <circle class="ring__fill" cx="60" cy="60" r="52" pathLength="100" />
+                    </svg><span class="ring__label">Score</span></div>
+                  <div class="rep__bars"><i style="--w:78%"></i><i style="--w:56%"></i><i style="--w:88%"></i></div>
+                </div>
+                <div class="mock__block"><span class="mock__tag">AI feedback</span><i class="ln"></i><i
+                    class="ln"></i><i class="ln s"></i></div>
+                <div class="mock__btn">Schedule next interview</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section features" id="features">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2 class="h1">Everything you need before the real thing</h2>
+          <p class="lead">Practice, CV and feedback live in one place, so each session builds on the last.</p>
+        </div>
+
+        <div class="bento">
+          <article class="bento__card bento__card--lg bento--ink" data-reveal>
+            <svg class="icon bento__icon">
+              <use href="#i-mic" />
+            </svg>
+            <h3 class="h3">Answer out loud, not in a text box</h3>
+            <p>The interview room asks one question at a time and keeps the clock running. You practice the part that
+              actually feels hard: speaking.</p>
+            <span
+              class="wave is-live bento__wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          </article>
+
+          <article class="bento__card bento--hl" data-reveal style="--d:1">
+            <svg class="icon bento__icon">
+              <use href="#i-file" />
+            </svg>
+            <h3 class="h3">CV analyzer and optimizer</h3>
+            <p>Compare your CV with the job description and see the gaps before an employer does.</p>
+          </article>
+
+          <article class="bento__card" data-reveal style="--d:2">
+            <svg class="icon bento__icon">
+              <use href="#i-target" />
+            </svg>
+            <h3 class="h3">Questions built around the job</h3>
+            <p>Paste a job description and your interview is shaped by it.</p>
+          </article>
+
+          <article class="bento__card bento__card--wide" data-reveal style="--d:1">
+            <svg class="icon bento__icon">
+              <use href="#i-spark" />
+            </svg>
+            <h3 class="h3">AI feedback on every answer</h3>
+            <p>Each answer gets a score and written notes: what worked, what was unclear, and how to say it better.</p>
+          </article>
+
+          <article class="bento__card bento__card--wide" data-reveal style="--d:2">
+            <svg class="icon bento__icon">
+              <use href="#i-trend" />
+            </svg>
+            <h3 class="h3">Progress you can see</h3>
+            <p>Your dashboard tracks scores across sessions, so improvement is visible.</p>
+          </article>
+
+          <article class="bento__card " data-reveal style="--d:3">
+            <svg class="icon bento__icon">
+              <use href="#i-calendar" />
+            </svg>
+            <h3 class="h3">Schedule your next round</h3>
+            <p>Book the next practice session right from your report.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section audience" id="for">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2 class="h1">Made for people about to be interviewed</h2>
+        </div>
+        <div class="aud" id="aud">
+          <article class="aud__card" data-reveal>
+            <svg class="icon">
+              <use href="#i-graduation" />
+            </svg>
+            <h3 class="h3">Students</h3>
+            <p>Internships and first jobs are full of first-time interviews. Practice here, where a bad answer costs
+              nothing.</p>
+          </article>
+          <article class="aud__card" data-reveal style="--d:1">
+            <svg class="icon">
+              <use href="#i-briefcase" />
+            </svg>
+            <h3 class="h3">Job seekers</h3>
+            <p>Applying to many roles? Set up a new interview for each one and tailor your CV to match.</p>
+          </article>
+          <article class="aud__card" data-reveal style="--d:2">
+            <svg class="icon">
+              <use href="#i-compass" />
+            </svg>
+            <h3 class="h3">Career changers</h3>
+            <p>Learn to explain your move clearly and confidently before you explain it to a stranger.</p>
+          </article>
+          <article class="aud__card" data-reveal style="--d:3">
+            <svg class="icon">
+              <use href="#i-globe" />
+            </svg>
+            <h3 class="h3">Non-native speakers</h3>
+            <p>Practice in the language of the interview until the words come without effort.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="container faq__grid">
+        <div class="section__head" data-reveal>
+          <h2 class="h1">Questions you may have</h2>
+          <p class="lead">Can’t find your answer? Create an account and try a short interview to see how it works.</p>
+        </div>
+        <div class="faq__list" id="faq-list">
+          <div class="acc" data-reveal>
+            <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq-1" id="faq-b1">Do I need a
+              camera?<svg class="icon">
+                <use href="#i-chevron-down" />
+              </svg></button>
+            <div class="acc__panel" id="faq-1" role="region" aria-labelledby="faq-b1">
+              <div>
+                <p class="acc__inner">You need a microphone to answer out loud. A camera is optional and you can turn it
+                  off in the interview room.</p>
+              </div>
+            </div>
+          </div>
+          <div class="acc" data-reveal style="--d:1">
+            <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq-2" id="faq-b2">How is my
+              interview scored?<svg class="icon">
+                <use href="#i-chevron-down" />
+              </svg></button>
+            <div class="acc__panel" id="faq-2" role="region" aria-labelledby="faq-b2">
+              <div>
+                <p class="acc__inner">After the last question, the AI reviews each answer and gives a score per skill,
+                  an overall score, and written feedback you can act on.</p>
+              </div>
+            </div>
+          </div>
+          <div class="acc" data-reveal style="--d:2">
+            <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq-3" id="faq-b3">What do I do
+              with the CV analyzer?<svg class="icon">
+                <use href="#i-chevron-down" />
+              </svg></button>
+            <div class="acc__panel" id="faq-3" role="region" aria-labelledby="faq-b3">
+              <div>
+                <p class="acc__inner">Upload your CV and paste the job description. You will see how well they match,
+                  which keywords are missing, and an optimized version you can download.</p>
+              </div>
+            </div>
+          </div>
+          <div class="acc" data-reveal style="--d:3">
+            <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq-4" id="faq-b4">Can I
+              practice the same interview again?<svg class="icon">
+                <use href="#i-chevron-down" />
+              </svg></button>
+            <div class="acc__panel" id="faq-4" role="region" aria-labelledby="faq-b4">
+              <div>
+                <p class="acc__inner">Yes. Open any past report and schedule a new interview from it. Your dashboard
+                  keeps every score so you can compare attempts.</p>
+              </div>
+            </div>
+          </div>
+          <div class="acc" data-reveal style="--d:4">
+            <button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq-5" id="faq-b5">Who can see
+              my answers and CV?<svg class="icon">
+                <use href="#i-chevron-down" />
+              </svg></button>
+            <div class="acc__panel" id="faq-5" role="region" aria-labelledby="faq-b5">
+              <div>
+                <p class="acc__inner">Your sessions are tied to your account. You can review or delete your data any
+                  time from your profile.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta__in" data-reveal="scale">
+        <h2 class="display cta__title">Your next interview starts here</h2>
+        <p class="lead">Set up a practice interview in two minutes.</p>
+        <a class="btn btnAccent lagreBtn" href="auth.html?mode=signup">Start practicing</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__top">
+        <div class="site-footer__about"><a class="brand" href="index.html" aria-label="SpeakUp  home"><svg
+              class="brandMark" aria-hidden="true">
+              <use href="#i-logo" />
+            </svg><span class="brandName">SpeakUp </span></a>
+          <p>Practice interviews, fix your CV for the job you want, and learn from a scorecard after every session.</p>
+        </div>
+        <div class="site-footer__cols">
+          <div>
+            <h4>Product</h4><a href="index.html#how">How it works</a><a href="index.html#features">Features</a><a
+              href="index.html#faq">FAQ</a>
+          </div>
+          <div>
+            <h4>Practice</h4><a href="interview-setup.html">Interview setup</a><a href="cv-analyzer.html">CV
+              analyzer</a><a href="history.html">History</a>
+          </div>
+          <div>
+            <h4>Account</h4><a href="auth.html">Log in</a><a href="auth.html?mode=signup">Create account</a><a
+              href="dashboard.html">Dashboard</a><a href="expert-dashboard.html">Expert workspace</a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom"><span>© 2026 SpeakUp </span><a href="#top">Back to top</a></div>
+    </div>
+  </footer>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"
+    focusable="false">
+    <symbol id="i-logo" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="9" fill="#FFD93D" stroke="none" />
+      <path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#0D1128" stroke-width="3.2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24">
+      <path d="M12 4 2.8 20h18.4z" />
+      <path d="M12 10v4.5M12 17.4v.2" />
+    </symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24">
+      <rect x="3" y="7" width="18" height="13" rx="2.5" />
+      <path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18" />
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M3.5 10h17M8 3v4M16 3v4" />
+    </symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 12.5 3 3 5-6" />
+    </symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24">
+      <path d="m6 9 6 6 6-6" />
+    </symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="m15.5 8.5-2 5-5 2 2-5z" />
+    </symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24">
+      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" />
+      <circle cx="12" cy="12" r="3" />
+    </symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24">
+      <path
+        d="M3 3l18 18M10.6 5.7A9.6 9.6 0 0 1 12 5.5c6 0 9.5 6.5 9.5 6.5a16 16 0 0 1-3.2 3.9M6.6 7.1A16.3 16.3 0 0 0 2.5 12S6 18.5 12 18.5a9.5 9.5 0 0 0 4-.9M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+    </symbol>
+    <symbol id="i-file" viewBox="0 0 24 24">
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5M9 13h6M9 17h6" />
+    </symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+    </symbol>
+    <symbol id="i-graduation" viewBox="0 0 24 24">
+      <path d="m2 9 10-5 10 5-10 5z" />
+      <path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5" />
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5M12 7.8v.2" />
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24">
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7" />
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24">
+      <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+    </symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24">
+      <path d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7z" />
+      <path d="M19 17v4M17 19h4" />
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    </symbol>
+    <symbol id="i-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="12" r="1.2" />
+    </symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24">
+      <path d="M3 17l6-6 4 4 8-8" />
+      <path d="M15 7h6v6" />
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6 6 18" />
+    </symbol>
+  </svg>
+
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+
+</html>

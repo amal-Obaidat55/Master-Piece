@@ -1,0 +1,1382 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Overview — Admin — SpeakUp </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400..700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/shell.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('hr_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = t;
+    } catch (e) { }
+  </script>
+</head>
+
+<body data-shell="admin">
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar__top">
+        <a class="brand" href="index.html" aria-label="SpeakUp  home"><svg class="brandMark" aria-hidden="true">
+            <use href="#i-logo" />
+          </svg><span class="brandName">SpeakUp </span></a>
+        <button class="iconBtn menu-close" type="button" data-action="menu-close" aria-label="Close menu"><svg
+            class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <nav class="side-nav" aria-label="Admin">
+        <a class="side-link is-active" href="admin.html#overview" title="Overview"><svg class="icon" aria-hidden="true">
+            <use href="#i-chart" />
+          </svg><span class="side-label">Overview</span></a>
+        <a class="side-link" href="admin-users.html" title="Users"><svg class="icon" aria-hidden="true">
+            <use href="#i-users" />
+          </svg><span class="side-label">Users</span></a>
+        <a class="side-link" href="admin-interviews.html" title="Interviews"><svg class="icon" aria-hidden="true">
+            <use href="#i-mic" />
+          </svg><span class="side-label">Interviews</span></a>
+        <a class="side-link" href="admin-questions.html" title="Question bank"><svg class="icon" aria-hidden="true">
+            <use href="#i-book" />
+          </svg><span class="side-label">Question bank</span></a>
+        <a class="side-link" href="admin-options.html" title="Interview options"><svg class="icon" aria-hidden="true">
+            <use href="#i-layers" />
+          </svg><span class="side-label">Interview options</span></a>
+        <a class="side-link" href="admin.html#criteria" title="Scoring criteria"><svg class="icon" aria-hidden="true">
+            <use href="#i-target" />
+          </svg><span class="side-label">Scoring criteria</span></a>
+        <a class="side-link" href="admin.html#schedules" title="Schedules"><svg class="icon" aria-hidden="true">
+            <use href="#i-calendar" />
+          </svg><span class="side-label">Schedules</span></a>
+        <a class="side-link" href="admin.html#cvs" title="CVs and job descriptions"><svg class="icon"
+            aria-hidden="true">
+            <use href="#i-file" />
+          </svg><span class="side-label">CVs and job descriptions</span></a>
+        <a class="side-link" href="admin.html#content" title="Site content"><svg class="icon" aria-hidden="true">
+            <use href="#i-megaphone" />
+          </svg><span class="side-label">Site content</span></a>
+        <a class="side-link" href="admin.html#settings" title="Settings"><svg class="icon" aria-hidden="true">
+            <use href="#i-settings" />
+          </svg><span class="side-label">Settings</span></a>
+      </nav>
+      <div class="side-foot">
+        <a class="side-link" href="index.html"><svg class="icon" aria-hidden="true">
+            <use href="#i-arrow-left" />
+          </svg><span class="side-label">Back to app</span></a>
+        <a class="side-link" href="index.html"><svg class="icon" aria-hidden="true">
+            <use href="#i-logout" />
+          </svg><span class="side-label">Log out</span></a>
+      </div>
+    </aside>
+    <div class="app-main">
+      <header class="topbar">
+        <button class="iconBtn menu-btn" type="button" data-action="menu" aria-label="Open menu"><svg class="icon"
+            aria-hidden="true">
+            <use href="#i-menu" />
+          </svg></button>
+        <a class="brand brand--mobile" href="index.html" aria-label="SpeakUp  home"><svg class="brandMark"
+            aria-hidden="true">
+            <use href="#i-logo" />
+          </svg><span class="brandName">SpeakUp </span></a>
+        <span class="topbar__crumb">Admin · Overview</span>
+        <div class="topbar__spacer"></div>
+        <button class="iconBtn theme-btn" type="button" data-action="theme" aria-label="Switch theme"><span
+            class="i-sun"><svg class="icon" aria-hidden="true">
+              <use href="#i-sun" />
+            </svg></span><span class="i-moon"><svg class="icon" aria-hidden="true">
+              <use href="#i-moon" />
+            </svg></span></button>
+
+        <div class="dd">
+          <button class="iconBtn" type="button" data-dropdown="notif-panel" aria-label="Notifications"><svg class="icon"
+              aria-hidden="true">
+              <use href="#i-bell" />
+            </svg><span class="notif-dot"></span></button>
+          <div class="dropdown-panel notif" id="notif-panel" hidden>
+            <div class="dropdown-panel__head"><strong>Notifications</strong><button class="link small" type="button"
+                id="notif-read">Mark all read</button></div>
+            <div class="notif__list">
+              <a class="notif__item is-unread" href="dashboard.html"><span>Welcome to SpeakUp ! Your demo workspace is
+                  ready.</span><time class="small faint">Today</time></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="dd">
+          <button class="user-chip" type="button" data-dropdown="user-panel" aria-label="Account menu"><span
+              class="avatar">AM</span><span class="user-chip__name hide-sm">Alex Morgan</span><svg class="icon hide-sm"
+              aria-hidden="true">
+              <use href="#i-chevron-down" />
+            </svg></button>
+          <div class="dropdown-panel user-menu" id="user-panel" hidden>
+            <div class="user-menu__who"><strong>Alex Morgan</strong><span class="small muted">alex@example.com</span>
+            </div>
+            <a class="menu-item" href="profile.html"><svg class="icon" aria-hidden="true">
+                <use href="#i-user" />
+              </svg> Profile</a>
+            <a class="menu-item" href="admin.html"><svg class="icon" aria-hidden="true">
+                <use href="#i-shield" />
+              </svg> Admin panel</a>
+            <a class="menu-item" href="index.html"><svg class="icon" aria-hidden="true">
+                <use href="#i-logout" />
+              </svg> Log out</a>
+          </div>
+        </div>
+      </header>
+
+      <main class="page" id="main">
+        <div data-view="overview">
+          <div class="page-head view-in">
+            <div class="page-head__title">
+              <h1 class="h1">Overview</h1>
+              <p class="lead">How the platform is being used.</p>
+            </div>
+          </div>
+          <section class="kpis kpis--6 view-in" aria-label="Platform numbers">
+            <div class="kpi">
+              <div class="kpi__top"><span class="kpi__label">Users</span><span class="kpi__icon"><svg class="icon"
+                    aria-hidden="true">
+                    <use href="#i-users" />
+                  </svg></span></div>
+              <div class="kpi__value tnum"><span data-count="128">128</span></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__top"><span class="kpi__label">New users, last 7 days</span><span class="kpi__icon"><svg
+                    class="icon" aria-hidden="true">
+                    <use href="#i-user" />
+                  </svg></span></div>
+              <div class="kpi__value tnum"><span data-count="14">14</span></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__top"><span class="kpi__label">Interviews</span><span class="kpi__icon"><svg class="icon"
+                    aria-hidden="true">
+                    <use href="#i-mic" />
+                  </svg></span></div>
+              <div class="kpi__value tnum"><span data-count="246">246</span></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__top"><span class="kpi__label">Completed</span><span class="kpi__icon"><svg class="icon"
+                    aria-hidden="true">
+                    <use href="#i-check-circle" />
+                  </svg></span></div>
+              <div class="kpi__value tnum"><span data-count="198">198</span></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__top"><span class="kpi__label">Average score</span><span class="kpi__icon"><svg
+                    class="icon" aria-hidden="true">
+                    <use href="#i-target" />
+                  </svg></span></div>
+              <div class="kpi__value tnum"><span data-count="78">78</span><small>/100</small></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__top"><span class="kpi__label">CVs analyzed</span><span class="kpi__icon"><svg
+                    class="icon" aria-hidden="true">
+                    <use href="#i-file" />
+                  </svg></span></div>
+              <div class="kpi__value tnum"><span data-count="64">64</span></div>
+            </div>
+          </section>
+          <div class="ov view-in">
+            <section class="panel ov__wide">
+              <div class="panel__head">
+                <h2 class="panel__title">Interviews per day</h2>
+              </div>
+              <div class="panel__body" data-chart data-max="20" data-height="220" data-label="Interviews per day"
+                data-points="Oct 4:8, Oct 5:12, Oct 6:9, Oct 7:16, Oct 8:13, Oct 9:20"></div>
+            </section>
+            <section class="panel">
+              <div class="panel__head">
+                <h2 class="panel__title">Newest users</h2><a class="link small" href="#users">Manage users</a>
+              </div>
+              <div class="panel__body panel__body--flush">
+                <ul class="list">
+                  <li class="list__item item"><span class="avatar"
+                      style="width:36px;height:36px;font-size:13px">AM</span><span class="item__main"><span
+                        class="item__title truncate">Alex Morgan</span><span
+                        class="item__meta truncate">alex@example.com</span></span><span class="item__meta">Oct 10,
+                      2026</span></li>
+                </ul>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel__head">
+                <h2 class="panel__title">Latest interviews</h2><a class="link small" href="#interviews">See all</a>
+              </div>
+              <div class="panel__body panel__body--flush">
+                <ul class="list">
+                  <li class="list__item item"><span class="item__main"><span class="item__title truncate">Frontend
+                        Developer Practice</span><span class="item__meta truncate">Alex Morgan · Oct 10,
+                        2026</span></span><span class="pill pill--ok">Completed</span></li>
+                  <li class="list__item item"><span class="item__main"><span class="item__title truncate">Behavioral
+                        Practice</span><span class="item__meta truncate">Alex Morgan · Oct 10, 2026</span></span><span
+                      class="pill pill--ok">Completed</span></li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </div>
+        
+        <div data-view="options" hidden>
+          <div class="page-head view-in">
+            <div class="page-head__title">
+              <h1 class="h1">Interview options</h1>
+              <p class="lead">The choices users see in Interview Setup.</p>
+            </div>
+          </div>
+          <nav class="admin-tabs" aria-label="Interview options"><a href="#options/interviewTypes">Interview types</a><a
+              href="#options/levels">Levels</a><a href="#options/difficulties">Difficulties</a><a
+              href="#options/languages">Languages</a></nav>
+          <div data-sub="interviewTypes">
+            <section class="panel view-in" aria-label="Interview types">
+              <div class="panel__head">
+                <div class="toolbar">
+                  <form class="filters" role="search" novalidate></form><button class="btn btnAccent btn--sm"
+                    type="button" data-open="modal-option" data-title="Add interview type"><svg class="icon"
+                      aria-hidden="true">
+                      <use href="#i-plus" />
+                    </svg> Add interview type</button>
+                </div>
+              </div>
+              <div class="panel__body panel__body--flush table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Description</th>
+                      <th scope="col" class="num">Order</th>
+                      <th scope="col">Shown</th>
+                      <th scope="col"><span class="sr-only">Actions</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-row data-name="Technical Interview" data-description="Programming and technical skills"
+                      data-sortOrder="1" data-active="true">
+                      <td data-label="Name">Technical Interview</td>
+                      <td data-label="Description"><span class="clamp">Programming and technical skills</span></td>
+                      <td data-label="Order" class="num">1</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-option" data-edit
+                            data-title="Edit interview type" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                    <tr data-row data-name="Behavioral Interview" data-description="Experience and soft skills"
+                      data-sortOrder="2" data-active="true">
+                      <td data-label="Name">Behavioral Interview</td>
+                      <td data-label="Description"><span class="clamp">Experience and soft skills</span></td>
+                      <td data-label="Order" class="num">2</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-option" data-edit
+                            data-title="Edit interview type" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                    <tr data-row data-name="General Interview" data-description="General interview practice"
+                      data-sortOrder="3" data-active="true">
+                      <td data-label="Name">General Interview</td>
+                      <td data-label="Description"><span class="clamp">General interview practice</span></td>
+                      <td data-label="Order" class="num">3</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-option" data-edit
+                            data-title="Edit interview type" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+          <div data-sub="levels">
+            <section class="panel view-in" aria-label="Levels">
+              <div class="panel__head">
+                <div class="toolbar">
+                  <form class="filters" role="search" novalidate></form><button class="btn btnAccent btn--sm"
+                    type="button" data-open="modal-option" data-title="Add level"><svg class="icon" aria-hidden="true">
+                      <use href="#i-plus" />
+                    </svg> Add level</button>
+                </div>
+              </div>
+              <div class="panel__body panel__body--flush table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Description</th>
+                      <th scope="col" class="num">Order</th>
+                      <th scope="col">Shown</th>
+                      <th scope="col"><span class="sr-only">Actions</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-row data-name="Beginner" data-description="" data-sortOrder="1" data-active="true">
+                      <td data-label="Name">Beginner</td>
+                      <td data-label="Description"><span class="clamp"></span></td>
+                      <td data-label="Order" class="num">1</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-option" data-edit
+                            data-title="Edit level" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                    <tr data-row data-name="Intermediate" data-description="" data-sortOrder="2" data-active="true">
+                      <td data-label="Name">Intermediate</td>
+                      <td data-label="Description"><span class="clamp"></span></td>
+                      <td data-label="Order" class="num">2</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-option" data-edit
+                            data-title="Edit level" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                    <tr data-row data-name="Advanced" data-description="" data-sortOrder="3" data-active="true">
+                      <td data-label="Name">Advanced</td>
+                      <td data-label="Description"><span class="clamp"></span></td>
+                      <td data-label="Order" class="num">3</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-option" data-edit
+                            data-title="Edit level" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+          <div data-sub="difficulties">
+            <section class="panel view-in" aria-label="Difficulties">
+              <div class="panel__head">
+                <div class="toolbar">
+                  <form class="filters" role="search" novalidate></form><button class="btn btnAccent btn--sm"
+                    type="button" data-open="modal-option" data-title="Add difficulty"><svg class="icon"
+                      aria-hidden="true">
+                      <use href="#i-plus" />
+                    </svg> Add difficulty</button>
+                </div>
+              </div>
+              <div class="panel__body panel__body--flush table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Description</th>
+                      <th scope="col" class="num">Order</th>
+                      <th scope="col">Shown</th>
+                      <th scope="col"><span class="sr-only">Actions</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-row data-name="Easy" data-description="" data-sortOrder="1" data-active="true">
+                      <td data-label="Name">Easy</td>
+                      <td data-label="Description"><span class="clamp"></span></td>
+                      <td data-label="Order" class="num">1</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-option" data-edit
+                            data-title="Edit difficulty" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                    <tr data-row data-name="Medium" data-description="" data-sortOrder="2" data-active="true">
+                      <td data-label="Name">Medium</td>
+                      <td data-label="Description"><span class="clamp"></span></td>
+                      <td data-label="Order" class="num">2</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-option" data-edit
+                            data-title="Edit difficulty" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                    <tr data-row data-name="Hard" data-description="" data-sortOrder="3" data-active="true">
+                      <td data-label="Name">Hard</td>
+                      <td data-label="Description"><span class="clamp"></span></td>
+                      <td data-label="Order" class="num">3</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-option" data-edit
+                            data-title="Edit difficulty" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+          <div data-sub="languages">
+            <section class="panel view-in" aria-label="Languages">
+              <div class="panel__head">
+                <div class="toolbar">
+                  <form class="filters" role="search" novalidate></form><button class="btn btnAccent btn--sm"
+                    type="button" data-open="modal-lang" data-title="Add language"><svg class="icon" aria-hidden="true">
+                      <use href="#i-plus" />
+                    </svg> Add language</button>
+                </div>
+              </div>
+              <div class="panel__body panel__body--flush table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Code</th>
+                      <th scope="col">Direction</th>
+                      <th scope="col" class="num">Order</th>
+                      <th scope="col">Shown</th>
+                      <th scope="col"><span class="sr-only">Actions</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-row data-name="English" data-description="" data-sortOrder="1" data-active="true">
+                      <td data-label="Name">English</td>
+                      <td data-label="Description"><span class="clamp"></span></td>
+                      <td data-label="Code">en-US</td>
+                      <td data-label="Direction">ltr</td>
+                      <td data-label="Order" class="num">1</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-lang" data-edit
+                            data-title="Edit language" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                    <tr data-row data-name="Arabic" data-description="" data-sortOrder="2" data-active="true">
+                      <td data-label="Name">Arabic</td>
+                      <td data-label="Description"><span class="clamp"></span></td>
+                      <td data-label="Code">ar-JO</td>
+                      <td data-label="Direction">rtl</td>
+                      <td data-label="Order" class="num">2</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-lang" data-edit
+                            data-title="Edit language" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div data-view="criteria" hidden>
+          <div class="page-head view-in">
+            <div class="page-head__title">
+              <h1 class="h1">Scoring criteria</h1>
+              <p class="lead">The skills the AI scores in every report.</p>
+            </div>
+          </div>
+          <section class="panel view-in" aria-label="Scoring criteria">
+            <div class="panel__head">
+              <div class="toolbar">
+                <form class="filters" role="search" novalidate></form><button class="btn btnAccent btn--sm"
+                  type="button" data-open="modal-criterion" data-title="Add criterion"><svg class="icon"
+                    aria-hidden="true">
+                    <use href="#i-plus" />
+                  </svg> Add criterion</button>
+              </div>
+            </div>
+            <div class="panel__body panel__body--flush table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Skill</th>
+                    <th scope="col">What the AI looks for</th>
+                    <th scope="col" class="num">Weight</th>
+                    <th scope="col">Scored</th>
+                    <th scope="col"><span class="sr-only">Actions</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-row data-name="Clarity" data-description="Clear and structured answers" data-weight="25"
+                    data-active="true">
+                    <td data-label="Skill">Clarity</td>
+                    <td data-label="What the AI looks for"><span class="clamp">Clear and structured answers</span></td>
+                    <td data-label="Weight" class="num">25</td>
+                    <td data-label="Scored"><span class="pill pill--ok">Yes</span></td>
+                    <td data-label="Actions">
+                      <div class="actions"><button class="iconBtn" type="button" data-open="modal-criterion" data-edit
+                          data-title="Edit criterion" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                            <use href="#i-edit" />
+                          </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                          aria-label="Delete"><svg class="icon" aria-hidden="true">
+                            <use href="#i-trash" />
+                          </svg></button></div>
+                    </td>
+                  </tr>
+                  <tr data-row data-name="Technical Knowledge" data-description="Understanding of core concepts"
+                    data-weight="30" data-active="true">
+                    <td data-label="Skill">Technical Knowledge</td>
+                    <td data-label="What the AI looks for"><span class="clamp">Understanding of core concepts</span>
+                    </td>
+                    <td data-label="Weight" class="num">30</td>
+                    <td data-label="Scored"><span class="pill pill--ok">Yes</span></td>
+                    <td data-label="Actions">
+                      <div class="actions"><button class="iconBtn" type="button" data-open="modal-criterion" data-edit
+                          data-title="Edit criterion" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                            <use href="#i-edit" />
+                          </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                          aria-label="Delete"><svg class="icon" aria-hidden="true">
+                            <use href="#i-trash" />
+                          </svg></button></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+        <div data-view="schedules" hidden>
+          <div class="page-head view-in">
+            <div class="page-head__title">
+              <h1 class="h1">Schedules</h1>
+              <p class="lead">Interviews users have scheduled for later.</p>
+            </div>
+          </div>
+          <section class="panel view-in" aria-label="Schedules">
+            <div class="panel__head">
+              <div class="toolbar">
+                <form class="filters" role="search" novalidate>
+                  <div class="input-wrap"><svg class="icon" aria-hidden="true">
+                      <use href="#i-search" />
+                    </svg><input class="input" type="search" name="q" placeholder="Search"
+                      aria-label="Search Schedules"></div><select class="select" aria-label="All statuses">
+                    <option value="">All statuses</option>
+                    <option>Upcoming</option>
+                    <option>Done</option>
+                    <option>Cancelled</option>
+                  </select>
+                </form>
+              </div>
+            </div>
+            <div class="panel__body panel__body--flush table-wrap">
+              <div class="empty">
+                <div class="empty__icon"><svg class="icon" aria-hidden="true">
+                    <use href="#i-info" />
+                  </svg></div>
+                <div class="empty__title">Nothing scheduled</div>
+                <p class="empty__text">Interviews that users schedule appear here.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div data-view="cvs" hidden>
+          <div class="page-head view-in">
+            <div class="page-head__title">
+              <h1 class="h1">CVs and job descriptions</h1>
+              <p class="lead">Uploaded CVs and the job descriptions offered in the CV analyzer.</p>
+            </div>
+          </div>
+          <nav class="admin-tabs" aria-label="CVs and job descriptions"><a href="#cvs/cvs">CVs</a><a
+              href="#cvs/jobDescriptions">Job descriptions</a></nav>
+          <div data-sub="cvs">
+            <section class="panel view-in" aria-label="CVs">
+              <div class="panel__head">
+                <div class="toolbar">
+                  <form class="filters" role="search" novalidate>
+                    <div class="input-wrap"><svg class="icon" aria-hidden="true">
+                        <use href="#i-search" />
+                      </svg><input class="input" type="search" name="q" placeholder="Search" aria-label="Search CVs">
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="panel__body panel__body--flush table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">File</th>
+                      <th scope="col">User</th>
+                      <th scope="col" class="num">Analyses</th>
+                      <th scope="col">Size</th>
+                      <th scope="col">Uploaded</th>
+                      <th scope="col"><span class="sr-only">Actions</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-row>
+                      <td data-label="File"><span class="clamp">sample-resume.pdf</span></td>
+                      <td data-label="User">Alex Morgan</td>
+                      <td data-label="Analyses" class="num">1</td>
+                      <td data-label="Size">117 KB</td>
+                      <td data-label="Uploaded">Oct 10, 2026</td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="btn btnGhost btn--sm" type="button"
+                            data-toast="Your download is starting.">Download</button><button class="iconBtn"
+                            type="button" data-open="modal-delete" aria-label="Delete"><svg class="icon"
+                              aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+          <div data-sub="jobDescriptions">
+            <section class="panel view-in" aria-label="Job descriptions">
+              <div class="panel__head">
+                <div class="toolbar">
+                  <form class="filters" role="search" novalidate>
+                    <div class="input-wrap"><svg class="icon" aria-hidden="true">
+                        <use href="#i-search" />
+                      </svg><input class="input" type="search" name="q" placeholder="Search"
+                        aria-label="Search Job descriptions"></div>
+                  </form><button class="btn btnAccent btn--sm" type="button" data-open="modal-jd"
+                    data-title="Add job description"><svg class="icon" aria-hidden="true">
+                      <use href="#i-plus" />
+                    </svg> Add job description</button>
+                </div>
+              </div>
+              <div class="panel__body panel__body--flush table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Title</th>
+                      <th scope="col">Available to</th>
+                      <th scope="col">Text</th>
+                      <th scope="col">Shown</th>
+                      <th scope="col"><span class="sr-only">Actions</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-row data-title="Junior Frontend Developer"
+                      data-text="Looking for a junior developer with HTML, CSS, JavaScript, responsive design, and teamwork skills."
+                      data-active="true">
+                      <td data-label="Title">Junior Frontend Developer</td>
+                      <td data-label="Available to">Everyone</td>
+                      <td data-label="Text"><span class="clamp">Looking for a junior developer with HTML, CSS,
+                          JavaScript, responsive design, and teamwork skills.</span></td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-jd" data-edit
+                            data-title="Edit job description" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div data-view="content" hidden>
+          <div class="page-head view-in">
+            <div class="page-head__title">
+              <h1 class="h1">Site content</h1>
+              <p class="lead">FAQ entries, announcement banners and notifications.</p>
+            </div>
+          </div>
+          <nav class="admin-tabs" aria-label="Site content"><a href="#content/faq">FAQ</a><a
+              href="#content/announcements">Announcements</a><a href="#content/broadcast">Send notification</a></nav>
+          <div data-sub="faq">
+            <section class="panel view-in" aria-label="FAQ">
+              <div class="panel__head">
+                <div class="toolbar">
+                  <form class="filters" role="search" novalidate></form><button class="btn btnAccent btn--sm"
+                    type="button" data-open="modal-faq" data-title="Add question"><svg class="icon" aria-hidden="true">
+                      <use href="#i-plus" />
+                    </svg> Add question</button>
+                </div>
+              </div>
+              <div class="panel__body panel__body--flush table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Question</th>
+                      <th scope="col">Answer</th>
+                      <th scope="col" class="num">Order</th>
+                      <th scope="col">Shown</th>
+                      <th scope="col"><span class="sr-only">Actions</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-row data-question="How does SpeakUp  work?"
+                      data-answer="Practise interviews and review sample feedback." data-sortOrder="1"
+                      data-active="true">
+                      <td data-label="Question">How does SpeakUp work?</td>
+                      <td data-label="Answer"><span class="clamp">Practise interviews and review sample feedback.</span>
+                      </td>
+                      <td data-label="Order" class="num">1</td>
+                      <td data-label="Shown"><span class="pill pill--ok">Yes</span></td>
+                      <td data-label="Actions">
+                        <div class="actions"><button class="iconBtn" type="button" data-open="modal-faq" data-edit
+                            data-title="Edit question" aria-label="Edit"><svg class="icon" aria-hidden="true">
+                              <use href="#i-edit" />
+                            </svg></button><button class="iconBtn" type="button" data-open="modal-delete"
+                            aria-label="Delete"><svg class="icon" aria-hidden="true">
+                              <use href="#i-trash" />
+                            </svg></button></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+          <div data-sub="announcements">
+            <section class="panel view-in" aria-label="Announcements">
+              <div class="panel__head">
+                <div class="toolbar">
+                  <form class="filters" role="search" novalidate></form><button class="btn btnAccent btn--sm"
+                    type="button" data-open="modal-announcement" data-title="Add announcement"><svg class="icon"
+                      aria-hidden="true">
+                      <use href="#i-plus" />
+                    </svg> Add announcement</button>
+                </div>
+              </div>
+              <div class="panel__body panel__body--flush table-wrap">
+                <div class="empty">
+                  <div class="empty__icon"><svg class="icon" aria-hidden="true">
+                      <use href="#i-info" />
+                    </svg></div>
+                  <div class="empty__title">No announcements</div>
+                  <p class="empty__text">Add a banner to tell users about maintenance, new features or events.</p>
+                  <div class="row"><button class="btn btn--primary btn--sm" type="button" data-open="modal-announcement"
+                      data-title="Add announcement"><svg class="icon" aria-hidden="true">
+                        <use href="#i-plus" />
+                      </svg> Add announcement</button></div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div data-sub="broadcast">
+            <form class="panel view-in" novalidate data-validate data-toast="Sent to 24 people.">
+              <div class="panel__head">
+                <h2 class="panel__title">Send a notification</h2>
+              </div>
+              <div class="panel__body stack" style="--gap:18px;max-width:640px">
+                <p class="muted">The message appears in the notification bell for every person in the audience.</p>
+                <div class="field"><label class="field__label" for="bc-msg">Message</label><textarea class="textarea"
+                    id="bc-msg" name="message" rows="3" required maxlength="240"
+                    data-msg="Write the message people will see."></textarea></div>
+                <div class="form-grid">
+                  <div class="field"><label class="field__label" for="bc-href">Link<span
+                        class="opt">Optional</span></label><input class="input" id="bc-href" name="href" type="text"
+                      placeholder="dashboard.html"></div>
+                  <div class="field"><label class="field__label" for="bc-aud">Send to</label><select class="select"
+                      id="bc-aud" name="audience">
+                      <option value="all">Everyone</option>
+                      <option value="admins">Admins only</option>
+                    </select></div>
+                </div>
+                <div><button class="btn btn--primary" type="submit">Send notification</button></div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div data-view="settings" hidden>
+          <div class="page-head view-in">
+            <div class="page-head__title">
+              <h1 class="h1">Settings</h1>
+              <p class="lead">Limits, defaults and access rules for the whole platform.</p>
+            </div>
+          </div>
+          <form class="settings view-in" novalidate data-validate data-toast="Settings saved.">
+            <section class="panel">
+              <div class="panel__head">
+                <h2 class="panel__title">General</h2>
+              </div>
+              <div class="panel__body">
+                <div class="form-grid">
+                  <div class="field"><label class="field__label" for="s-siteName">Site name</label><input class="input"
+                      id="s-siteName" name="siteName" type="text" maxlength="40" value="SpeakUp "></div>
+                  <div class="field"><label class="field__label" for="s-support">Support email</label><input
+                      class="input" id="s-support" name="supportEmail" type="email" value="support@SpeakUp .demo"></div>
+                </div>
+                <label class="switch"><input type="checkbox" name="registrationOpen" checked><span>Allow new people to
+                    create accounts</span></label>
+                <label class="switch"><input type="checkbox" name="maintenanceMode"><span>Maintenance mode. Only admins
+                    can use the platform</span></label>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel__head">
+                <h2 class="panel__title">Limits</h2>
+              </div>
+              <div class="panel__body">
+                <div class="form-grid">
+                  <div class="field"><label class="field__label" for="s-cvMaxMB">Largest CV file (MB)</label><input
+                      class="input" id="s-cvMaxMB" name="cvMaxMB" type="number" required min="1" max="50" value="5">
+                  </div>
+                  <div class="field"><label class="field__label" for="s-ext">Allowed CV file types</label><input
+                      class="input" id="s-ext" name="cvExtensions" type="text" placeholder=".pdf, .docx"
+                      value=".pdf, .doc, .docx"><span class="field__hint">Separate with commas.</span></div>
+                  <div class="field"><label class="field__label" for="s-jdMaxChars">Longest job description
+                      (characters)</label><input class="input" id="s-jdMaxChars" name="jdMaxChars" type="number"
+                      required min="500" value="8000"></div>
+                  <div class="field"><label class="field__label" for="s-questionsMin">Fewest questions</label><input
+                      class="input" id="s-questionsMin" name="questionsMin" type="number" required min="1" value="3">
+                  </div>
+                  <div class="field"><label class="field__label" for="s-questionsMax">Most questions</label><input
+                      class="input" id="s-questionsMax" name="questionsMax" type="number" required min="1" max="100"
+                      value="20"></div>
+                  <div class="field"><label class="field__label" for="s-durationMin2">Shortest interview
+                      (minutes)</label><input class="input" id="s-durationMin2" name="durationMin2" type="number"
+                      required min="1" value="5"></div>
+                  <div class="field"><label class="field__label" for="s-durationMax">Longest interview
+                      (minutes)</label><input class="input" id="s-durationMax" name="durationMax" type="number" required
+                      min="1" max="240" value="60"></div>
+                  <div class="field"><label class="field__label" for="s-durationStep">Time slider step
+                      (minutes)</label><input class="input" id="s-durationStep" name="durationStep" type="number"
+                      required min="1" value="5"></div>
+                </div>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel__head">
+                <h2 class="panel__title">Defaults in Interview Setup</h2>
+              </div>
+              <div class="panel__body">
+                <div class="form-grid">
+                  <div class="field"><label class="field__label" for="s-typeId">Interview type</label><select
+                      class="select" id="s-typeId" name="typeId">
+                      <option value="">None</option>
+                      <option value="1" selected>Technical Interview</option>
+                      <option value="2">Behavioral Interview</option>
+                      <option value="3">General Interview</option>
+                    </select></div>
+                  <div class="field"><label class="field__label" for="s-levelId">Level</label><select class="select"
+                      id="s-levelId" name="levelId">
+                      <option value="">None</option>
+                      <option value="1" selected>Beginner</option>
+                      <option value="2">Intermediate</option>
+                      <option value="3">Advanced</option>
+                    </select></div>
+                  <div class="field"><label class="field__label" for="s-difficultyId">Difficulty</label><select
+                      class="select" id="s-difficultyId" name="difficultyId">
+                      <option value="">None</option>
+                      <option value="1">Easy</option>
+                      <option value="2" selected>Medium</option>
+                      <option value="3">Hard</option>
+                    </select></div>
+                  <div class="field"><label class="field__label" for="s-languageId">Language</label><select
+                      class="select" id="s-languageId" name="languageId">
+                      <option value="">None</option>
+                      <option value="en" selected>English</option>
+                      <option value="ar">Arabic</option>
+                    </select></div>
+                  <div class="field"><label class="field__label" for="s-dq">Number of questions</label><input
+                      class="input" id="s-dq" name="questionCount" type="number" min="1" value="5"></div>
+                  <div class="field"><label class="field__label" for="s-dd">Time limit (minutes)</label><input
+                      class="input" id="s-dd" name="durationMin" type="number" min="1" value="15"></div>
+                </div>
+              </div>
+            </section>
+            <div class="savebar"><span class="small faint"></span><button class="btn btn--primary" type="submit">Save
+                settings</button></div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-delete" data-removes data-toast="Deleted." role="dialog" aria-modal="true"
+    aria-labelledby="modal-delete-t" hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-delete-t" data-title>Delete this item?</h2><button class="iconBtn" type="button"
+          data-close aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <p class="muted">It will be removed. This can’t be undone.</p>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--danger" type="button" data-confirm>Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-user" role="dialog" aria-modal="true" aria-labelledby="modal-user-t" hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-user-t" data-title>Add user</h2><button class="iconBtn" type="button" data-close
+          aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <form class="form-grid" novalidate onsubmit="return false">
+          <div class="field"><label class="field__label" for="f-name">Full name</label><input class="input" id="f-name"
+              name="name" type="text" required minlength="2" maxlength="80"></div>
+          <div class="field"><label class="field__label" for="f-email">Email</label><input class="input" id="f-email"
+              name="email" type="email" required></div>
+          <div class="field"><label class="field__label" for="f-role">Role</label><select class="select" id="f-role"
+              name="role" required>
+              <option value="">Choose one</option>
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select></div>
+          <div class="field"><label class="field__label" for="f-status">Status</label><select class="select"
+              id="f-status" name="status" required>
+              <option value="">Choose one</option>
+              <option value="active">Active</option>
+              <option value="suspended">Suspended</option>
+            </select></div>
+          <div class="field" data-create-only><label class="field__label" for="f-password">Password</label><input
+              class="input" id="f-password" name="password" type="password" required minlength="8"
+              autocomplete="new-password"><span class="field__hint">At least 8 characters. The user can change it
+              later.</span></div>
+        </form>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--primary" type="button" data-save="Saved.">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-interview" role="dialog" aria-modal="true" aria-labelledby="modal-interview-t" hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-interview-t" data-title>Add interview</h2><button class="iconBtn" type="button"
+          data-close aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <form class="form-grid" novalidate onsubmit="return false">
+          <div class="field"><label class="field__label" for="f-status">Status</label><select class="select"
+              id="f-status" name="status" required>
+              <option value="">Choose one</option>
+              <option value="scheduled">Scheduled</option>
+              <option value="in_progress">In progress</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+              <option value="failed">Failed</option>
+            </select></div>
+        </form>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--primary" type="button" data-save="Saved.">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-question" role="dialog" aria-modal="true" aria-labelledby="modal-question-t" hidden>
+    <div class="modal__dialog modal__dialog--wide">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-question-t" data-title>Add question</h2><button class="iconBtn" type="button"
+          data-close aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <form class="form-grid" novalidate onsubmit="return false">
+          <div class="field full"><label class="field__label" for="f-text">Question</label><textarea class="textarea"
+              id="f-text" name="text" rows="3" required></textarea></div>
+          <div class="field full"><label class="field__label" for="f-hint">Hint for the candidate<span
+                class="opt">Optional</span></label><input class="input" id="f-hint" name="hint" type="text"></div>
+          <div class="field"><label class="field__label" for="f-typeId">Interview type</label><select class="select"
+              id="f-typeId" name="typeId" required>
+              <option value="">Choose one</option>
+              <option value="1">Technical Interview</option>
+              <option value="2">Behavioral Interview</option>
+              <option value="3">General Interview</option>
+            </select></div>
+          <div class="field"><label class="field__label" for="f-levelId">Level<span
+                class="opt">Optional</span></label><select class="select" id="f-levelId" name="levelId">
+              <option value="">None</option>
+              <option value="1">Beginner</option>
+              <option value="2">Intermediate</option>
+              <option value="3">Advanced</option>
+            </select></div>
+          <div class="field"><label class="field__label" for="f-difficultyId">Difficulty<span
+                class="opt">Optional</span></label><select class="select" id="f-difficultyId" name="difficultyId">
+              <option value="">None</option>
+              <option value="1">Easy</option>
+              <option value="2">Medium</option>
+              <option value="3">Hard</option>
+            </select></div>
+          <div class="field"><label class="field__label" for="f-languageId">Language<span
+                class="opt">Optional</span></label><select class="select" id="f-languageId" name="languageId">
+              <option value="">None</option>
+              <option value="en">English</option>
+              <option value="ar">Arabic</option>
+            </select></div>
+          <div class="field"><label class="field__label" for="f-timeLimitSec">Time limit (seconds)<span
+                class="opt">Optional</span></label><input class="input" id="f-timeLimitSec" name="timeLimitSec"
+              type="number" min="0"><span class="field__hint">Leave empty for no limit on this question.</span></div>
+          <div class="field full"><label class="field__label" for="f-tags">Tags<span class="opt">Optional</span></label>
+            <div class="tags"><input id="f-tags" type="text" maxlength="40" placeholder="Type and press Enter"></div>
+          </div>
+          <div class="field full"><label class="field__label" for="f-idealAnswer">Notes for the AI reviewer<span
+                class="opt">Optional</span></label><textarea class="textarea" id="f-idealAnswer" name="idealAnswer"
+              rows="3"></textarea><span class="field__hint">What a strong answer covers. Never shown to
+              candidates.</span></div>
+          <div class="field full"><label class="switch"><input type="checkbox" name="active"><span>Available in
+                interviews</span></label></div>
+        </form>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--primary" type="button" data-save="Saved.">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-option" role="dialog" aria-modal="true" aria-labelledby="modal-option-t" hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-option-t" data-title>Add item</h2><button class="iconBtn" type="button" data-close
+          aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <form class="form-grid" novalidate onsubmit="return false">
+          <div class="field"><label class="field__label" for="f-name">Name</label><input class="input" id="f-name"
+              name="name" type="text" required maxlength="60"></div>
+          <div class="field full"><label class="field__label" for="f-description">Description<span
+                class="opt">Optional</span></label><textarea class="textarea" id="f-description" name="description"
+              rows="2"></textarea></div>
+          <div class="field"><label class="field__label" for="f-sortOrder">Order<span
+                class="opt">Optional</span></label><input class="input" id="f-sortOrder" name="sortOrder" type="number"
+              min="0"><span class="field__hint">Lower numbers appear first.</span></div>
+          <div class="field"><label class="switch"><input type="checkbox" name="active"><span>Shown to
+                users</span></label></div>
+        </form>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--primary" type="button" data-save="Saved.">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-lang" role="dialog" aria-modal="true" aria-labelledby="modal-lang-t" hidden>
+    <div class="modal__dialog modal__dialog--wide">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-lang-t" data-title>Add language</h2><button class="iconBtn" type="button" data-close
+          aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <form class="form-grid" novalidate onsubmit="return false">
+          <div class="field"><label class="field__label" for="f-name">Name</label><input class="input" id="f-name"
+              name="name" type="text" required></div>
+          <div class="field full"><label class="field__label" for="f-description">Description<span
+                class="opt">Optional</span></label><textarea class="textarea" id="f-description" name="description"
+              rows="2"></textarea></div>
+          <div class="field"><label class="field__label" for="f-code">Language code</label><input class="input"
+              id="f-code" name="code" type="text" required><span class="field__hint">For example en-US. Used for speech
+              recognition and reading questions aloud.</span></div>
+          <div class="field"><label class="field__label" for="f-dir">Text direction</label><select class="select"
+              id="f-dir" name="dir" required>
+              <option value="">Choose one</option>
+              <option value="ltr">Left to right</option>
+              <option value="rtl">Right to left</option>
+            </select></div>
+          <div class="field"><label class="field__label" for="f-sortOrder">Order<span
+                class="opt">Optional</span></label><input class="input" id="f-sortOrder" name="sortOrder" type="number"
+              min="0"><span class="field__hint">Lower numbers appear first.</span></div>
+          <div class="field"><label class="switch"><input type="checkbox" name="active"><span>Shown to
+                users</span></label></div>
+        </form>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--primary" type="button" data-save="Saved.">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-criterion" role="dialog" aria-modal="true" aria-labelledby="modal-criterion-t" hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-criterion-t" data-title>Add criterion</h2><button class="iconBtn" type="button"
+          data-close aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <form class="form-grid" novalidate onsubmit="return false">
+          <div class="field"><label class="field__label" for="f-name">Skill name</label><input class="input" id="f-name"
+              name="name" type="text" required></div>
+          <div class="field"><label class="field__label" for="f-weight">Weight</label><input class="input" id="f-weight"
+              name="weight" type="number" required min="0" max="100"><span class="field__hint">How much this skill
+              counts toward the overall score.</span></div>
+          <div class="field full"><label class="field__label" for="f-description">What the AI looks for</label><textarea
+              class="textarea" id="f-description" name="description" rows="3" required></textarea></div>
+          <div class="field full"><label class="switch"><input type="checkbox" name="active"><span>Include in
+                scoring</span></label></div>
+        </form>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--primary" type="button" data-save="Saved.">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-jd" role="dialog" aria-modal="true" aria-labelledby="modal-jd-t" hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-jd-t" data-title>Add job description</h2><button class="iconBtn" type="button"
+          data-close aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <form class="form-grid" novalidate onsubmit="return false">
+          <div class="field full"><label class="field__label" for="f-title">Job title</label><input class="input"
+              id="f-title" name="title" type="text" required></div>
+          <div class="field full"><label class="field__label" for="f-text">Description</label><textarea class="textarea"
+              id="f-text" name="text" rows="9" required></textarea></div>
+          <div class="field full"><label class="switch"><input type="checkbox" name="active"><span>Available to
+                everyone</span></label><span class="field__hint">Descriptions you add here appear in every user’s saved
+              list in the CV analyzer.</span></div>
+        </form>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--primary" type="button" data-save="Saved.">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-faq" role="dialog" aria-modal="true" aria-labelledby="modal-faq-t" hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-faq-t" data-title>Add question</h2><button class="iconBtn" type="button" data-close
+          aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <form class="form-grid" novalidate onsubmit="return false">
+          <div class="field full"><label class="field__label" for="f-question">Question</label><input class="input"
+              id="f-question" name="question" type="text" required></div>
+          <div class="field full"><label class="field__label" for="f-answer">Answer</label><textarea class="textarea"
+              id="f-answer" name="answer" rows="5" required></textarea></div>
+          <div class="field"><label class="field__label" for="f-sortOrder">Order<span
+                class="opt">Optional</span></label><input class="input" id="f-sortOrder" name="sortOrder" type="number"
+              min="0"><span class="field__hint">Lower numbers appear first.</span></div>
+          <div class="field"><label class="switch"><input type="checkbox" name="active"><span>Shown to
+                users</span></label></div>
+        </form>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--primary" type="button" data-save="Saved.">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-announcement" role="dialog" aria-modal="true" aria-labelledby="modal-announcement-t"
+    hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-announcement-t" data-title>Add announcement</h2><button class="iconBtn" type="button"
+          data-close aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <form class="form-grid" novalidate onsubmit="return false">
+          <div class="field full"><label class="field__label" for="f-message">Message</label><input class="input"
+              id="f-message" name="message" type="text" required></div>
+          <div class="field"><label class="field__label" for="f-href">Link<span
+                class="opt">Optional</span></label><input class="input" id="f-href" name="href" type="url"><span
+              class="field__hint">Optional. Where the banner takes people when they click it.</span></div>
+          <div class="field"><label class="field__label" for="f-type">Style</label><select class="select" id="f-type"
+              name="type" required>
+              <option value="">Choose one</option>
+              <option value="info">Information</option>
+              <option value="warning">Warning</option>
+            </select></div>
+          <div class="field full"><label class="switch"><input type="checkbox" name="active"><span>Show this
+                banner</span></label><span class="field__hint">Only one banner shows at a time: the newest active
+              one.</span></div>
+        </form>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--primary" type="button" data-save="Saved.">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="scrim"></div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"
+    focusable="false">
+    <symbol id="i-logo" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="9" fill="#FFD93D" stroke="none" />
+      <path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#0D1128" stroke-width="3.2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24">
+      <path d="M12 4 2.8 20h18.4z" />
+      <path d="M12 10v4.5M12 17.4v.2" />
+    </symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24">
+      <path d="M19 12H5M11 6l-6 6 6 6" />
+    </symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24">
+      <path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15z" />
+      <path d="M10 21a2 2 0 0 0 4 0" />
+    </symbol>
+    <symbol id="i-book" viewBox="0 0 24 24">
+      <path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z" />
+      <path d="M5 17a3 3 0 0 1 3-3h11" />
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M3.5 10h17M8 3v4M16 3v4" />
+    </symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24">
+      <path d="M5 20V10M12 20V4M19 20v-7" />
+    </symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 12.5 3 3 5-6" />
+    </symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24">
+      <path d="m6 9 6 6 6-6" />
+    </symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24">
+      <path d="M4 20h4L19 9l-4-4L4 16z" />
+      <path d="m13.5 6.5 4 4" />
+    </symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24">
+      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" />
+      <circle cx="12" cy="12" r="3" />
+    </symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24">
+      <path
+        d="M3 3l18 18M10.6 5.7A9.6 9.6 0 0 1 12 5.5c6 0 9.5 6.5 9.5 6.5a16 16 0 0 1-3.2 3.9M6.6 7.1A16.3 16.3 0 0 0 2.5 12S6 18.5 12 18.5a9.5 9.5 0 0 0 4-.9M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+    </symbol>
+    <symbol id="i-file" viewBox="0 0 24 24">
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5M9 13h6M9 17h6" />
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5M12 7.8v.2" />
+    </symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24">
+      <path d="m12 3 9 5-9 5-9-5z" />
+      <path d="m3 13 9 5 9-5" />
+    </symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24">
+      <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4" />
+      <path d="M15 8l4 4-4 4M19 12H9" />
+    </symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24">
+      <path d="M3 10v4a1 1 0 0 0 1 1h3l8 4V5L7 9H4a1 1 0 0 0-1 1z" />
+      <path d="M19 9a4 4 0 0 1 0 6" />
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24">
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7" />
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24">
+      <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" />
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m16 16 4.5 4.5" />
+    </symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24">
+      <path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h9M19 18h1" />
+      <circle cx="15" cy="6" r="3" />
+      <circle cx="9" cy="12" r="3" />
+      <circle cx="16" cy="18" r="3" />
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24">
+      <path d="M12 3 4.5 6v5.5c0 4.6 3.2 8 7.5 9.5 4.3-1.5 7.5-4.9 7.5-9.5V6z" />
+      <path d="m9 12 2.2 2.2L15.5 10" />
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    </symbol>
+    <symbol id="i-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="12" r="1.2" />
+    </symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24">
+      <path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" />
+    </symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24">
+      <path d="M12 16V4M7 9l5-5 5 5" />
+      <path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" />
+    </symbol>
+    <symbol id="i-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21a8 8 0 0 1 16 0" />
+    </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24">
+      <circle cx="9" cy="8" r="3.5" />
+      <path d="M2.5 20a6.5 6.5 0 0 1 13 0" />
+      <path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8" />
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6 6 18" />
+    </symbol>
+  </svg>
+
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

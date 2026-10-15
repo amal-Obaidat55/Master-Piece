@@ -1,0 +1,554 @@
+.expert-workspace {
+    max-width: 1320px
+}
+
+.expert-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    padding: 26px 30px;
+    margin-bottom: 22px
+}
+
+.expert-welcome h2 {
+    font-size: 27px;
+    margin: 10px 0
+}
+
+.expert-welcome .btn {
+    margin-top: 12px
+}
+
+.expert-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 22px
+}
+
+.expert-stat {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 19px
+}
+
+.expert-stat>span:last-child {
+    display: grid;
+    gap: 4px
+}
+
+.expert-stat strong {
+    font-size: 25px;
+    line-height: 1.15
+}
+
+.expert-stat small {
+    font-size: 12px;
+    color: var(--text-2)
+}
+
+.expert-home-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(270px, .8fr);
+    gap: 20px;
+    align-items: start
+}
+
+.expert-dashboard-section {
+    padding: 22px
+}
+
+.expert-dashboard-section h3 {
+    margin: 12px 0 6px
+}
+
+.expert-appointment {
+    margin-top: 12px;
+    border: 1px solid var(--line);
+    border-radius: 16px
+}
+
+.availability-meter {
+    height: 8px;
+    margin: 15px 0 19px;
+    background: var(--surface-2);
+    border-radius: 8px;
+    overflow: hidden
+}
+
+.availability-meter span {
+    display: block;
+    height: 100%;
+    width: var(--w);
+    background: var(--brand);
+    border-radius: inherit
+}
+
+.expert-session-list {
+    display: grid;
+    gap: 13px
+}
+
+.expert-session-card {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    padding: 19px
+}
+
+.expert-session-info {
+    flex: 1;
+    min-width: 0
+}
+
+.expert-session-info h3 {
+    margin: 8px 0 4px;
+    font-size: 17px
+}
+
+.expert-session-info p {
+    margin: 5px 0
+}
+
+.expert-session-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap
+}
+
+.expert-session-tabs {
+    margin-top: 0
+}
+
+.expert-session-card[hidden] {
+    display: none
+}
+
+.availability-editor,
+.expert-profile-form {
+    padding: 25px
+}
+
+.availability-toolbar {
+    display: flex;
+    align-items: end;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 26px
+}
+
+.availability-toolbar label,
+.expert-form-grid label {
+    display: grid;
+    gap: 7px;
+    flex: 1;
+    min-width: 190px;
+    font-size: 13px;
+    font-weight: 650
+}
+
+.availability-editor input:not([type=checkbox]),
+.availability-editor select,
+.expert-profile-form input,
+.expert-profile-form select,
+.expert-profile-form textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 14px
+}
+
+.availability-editor input:focus,
+.availability-editor select:focus,
+.expert-profile-form input:focus,
+.expert-profile-form textarea:focus,
+.expert-profile-form select:focus {
+    outline: 2px solid color-mix(in srgb, var(--brand) 25%, transparent);
+    border-color: var(--brand)
+}
+
+.availability-editor h2 {
+    margin: 0 0 7px;
+    font-size: 21px
+}
+
+.weekly-hours {
+    display: grid;
+    gap: 8px;
+    margin: 18px 0 26px
+}
+
+.availability-day {
+    display: grid;
+    grid-template-columns: 24px minmax(90px, 1fr) minmax(100px, 150px) 24px minmax(100px, 150px);
+    align-items: center;
+    gap: 12px;
+    padding: 11px 13px;
+    border: 1px solid var(--line);
+    border-radius: 12px
+}
+
+.availability-day input[type=checkbox] {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--brand)
+}
+
+.availability-day input[type=time] {
+    min-height: 38px;
+    padding: 6px 9px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit
+}
+
+.availability-day-name {
+    font-weight: 650
+}
+
+.availability-exceptions {
+    align-items: end;
+    padding-top: 16px;
+    border-top: 1px solid var(--line)
+}
+
+.availability-exceptions label {
+    display: grid;
+    gap: 7px;
+    flex: 1;
+    min-width: 170px;
+    font-size: 13px;
+    font-weight: 650
+}
+
+.blocked-dates {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap
+}
+
+.blocked-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--surface-2);
+    font-size: 13px
+}
+
+.blocked-date .icon {
+    width: 16px;
+    height: 16px;
+    color: var(--brand)
+}
+
+.blocked-date button {
+    border: 0;
+    background: transparent;
+    color: var(--text-2);
+    font-size: 18px;
+    cursor: pointer
+}
+
+.availability-save {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 23px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line)
+}
+
+.availability-save p {
+    margin: 0;
+    font-size: 13px
+}
+
+.expert-profile-form-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-bottom: 22px;
+    margin-bottom: 23px;
+    border-bottom: 1px solid var(--line)
+}
+
+.expert-profile-form-head h2 {
+    margin: 7px 0 3px
+}
+
+.expert-profile-form-head p {
+    margin: 0 0 5px
+}
+
+.expert-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px
+}
+
+.expert-form-grid .span-all {
+    grid-column: 1/-1
+}
+
+.expert-profile-form textarea {
+    resize: vertical;
+    min-height: 120px
+}
+
+.expert-review {
+    padding: 19px 0;
+    border-bottom: 1px solid var(--line)
+}
+
+.expert-review:last-child {
+    border-bottom: 0
+}
+
+.expert-review .rating {
+    font-weight: 700
+}
+
+.expert-review .rating small {
+    margin-left: 8px;
+    color: var(--text-2);
+    font-weight: 400
+}
+
+.expert-review p {
+    line-height: 1.65
+}
+
+.payout-total {
+    font-size: 38px;
+    font-weight: 800;
+    margin: 15px 0
+}
+
+.payout-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px
+}
+
+.payout-row:last-of-type {
+    margin-bottom: 16px
+}
+
+@media(min-width:769px) and (max-width:1240px) {
+    .expert-workspace {
+        padding-inline: 24px
+    }
+
+    .expert-home-grid {
+        grid-template-columns: minmax(0, 1.25fr) minmax(240px, .8fr);
+        gap: 15px
+    }
+
+    .expert-dashboard-section {
+        padding: 18px
+    }
+
+    .expert-session-card {
+        flex-wrap: wrap
+    }
+}
+
+@media(min-width:481px) and (max-width:768px) {
+    .expert-workspace {
+        padding-inline: 22px
+    }
+
+    .expert-home-grid {
+        grid-template-columns: 1fr
+    }
+
+    .expert-session-card {
+        align-items: flex-start;
+        flex-wrap: wrap
+    }
+
+    .expert-session-actions {
+        width: 100%;
+        margin-inline-start: 65px
+    }
+
+    .availability-editor,
+    .expert-profile-form {
+        padding: 20px
+    }
+
+    .availability-day {
+        grid-template-columns: 22px minmax(75px, 1fr) minmax(95px, 130px) 18px minmax(95px, 130px);
+        gap: 8px
+    }
+}
+
+@media(max-width:480px) {
+    .expert-workspace {
+        padding-inline: 16px
+    }
+
+    .expert-welcome {
+        padding: 20px;
+        align-items: flex-start
+    }
+
+    .expert-welcome h2 {
+        font-size: 23px
+    }
+
+    .expert-welcome .expert-avatar {
+        width: 58px;
+        height: 58px;
+        flex: none
+    }
+
+    .expert-stats {
+        grid-template-columns: 1fr;
+        gap: 10px
+    }
+
+    .expert-stat {
+        padding: 15px
+    }
+
+    .expert-stat strong {
+        font-size: 22px
+    }
+
+    .expert-home-grid {
+        grid-template-columns: 1fr;
+        gap: 13px
+    }
+
+    .expert-dashboard-section {
+        padding: 17px
+    }
+
+    .expert-appointment {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 14px
+    }
+
+    .expert-appointment .btn {
+        margin-inline-start: auto
+    }
+
+    .expert-session-card {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 15px
+    }
+
+    .expert-session-info {
+        min-width: calc(100% - 70px)
+    }
+
+    .expert-session-actions {
+        width: 100%;
+        margin-inline-start: 0
+    }
+
+    .expert-session-actions .btn {
+        flex: 1
+    }
+
+    .expert-session-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap
+    }
+
+    .expert-session-tabs button {
+        white-space: nowrap
+    }
+
+    .availability-editor,
+    .expert-profile-form {
+        padding: 16px
+    }
+
+    .availability-toolbar {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px
+    }
+
+    .availability-toolbar label,
+    .availability-exceptions label {
+        min-width: 0
+    }
+
+    .availability-day {
+        grid-template-columns: 20px repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        padding: 9px 7px
+    }
+
+    .availability-day-name {
+        grid-area: 1/2/2/5
+    }
+
+    .availability-day input[type=time]:nth-of-type(2) {
+        grid-area: 2/2/3/3;
+        min-width: 0
+    }
+
+    .availability-day>span:nth-of-type(2) {
+        grid-area: 2/3/3/4;
+        text-align: center
+    }
+
+    .availability-day input[type=time]:nth-of-type(3) {
+        grid-area: 2/4/3/5;
+        min-width: 0
+    }
+
+    .availability-save {
+        align-items: flex-start;
+        flex-direction: column
+    }
+
+    .availability-save .btn {
+        width: 100%
+    }
+
+    .expert-form-grid {
+        grid-template-columns: 1fr;
+        gap: 14px
+    }
+
+    .expert-form-grid .span-all {
+        grid-column: auto
+    }
+
+    .expert-profile-form-head {
+        align-items: flex-start;
+        gap: 13px
+    }
+
+    .expert-profile-form-head .expert-avatar {
+        width: 64px;
+        height: 64px;
+        flex: none
+    }
+
+    .payout-total {
+        font-size: 32px
+    }
+}

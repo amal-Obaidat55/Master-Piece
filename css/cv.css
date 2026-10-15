@@ -1,0 +1,274 @@
+.cv-inputs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.select--sm {
+  min-height: 38px;
+  padding-block: 6px;
+  font-size: 14px;
+  width: auto;
+  max-width: 220px;
+}
+
+.saved {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.saved__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-m);
+  background: var(--surface);
+  cursor: pointer;
+  transition: .2s var(--ease);
+}
+
+.saved__item:hover {
+  border-color: var(--text-3);
+}
+
+.saved__item input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.saved__item:has(input:checked) {
+  border-color: var(--ink);
+  background: var(--accent-soft);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+html[data-theme="dark"] .saved__item:has(input:checked) {
+  border-color: var(--hl);
+  box-shadow: 2px 2px 0 #000;
+}
+
+.saved__item:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.saved__item .item__badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.saved__item .iconBtn {
+  width: 34px;
+  height: 34px;
+}
+
+.analyzing__in {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.analyzing__doc {
+  position: relative;
+  width: 120px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 16px;
+  background: var(--bg);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.analyzing__doc .cv__scan {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 36px;
+  background: linear-gradient(to bottom, transparent, rgba(45, 59, 255, .28));
+  border-bottom: 2px solid var(--btn);
+  animation: scan 1.8s var(--ease) infinite;
+}
+
+@keyframes scan {
+  0% {
+    top: -36px;
+  }
+
+  100% {
+    top: 100%;
+  }
+}
+
+.analyzing {
+  margin-top: 20px;
+}
+
+.results {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  scroll-margin-top: 90px;
+}
+
+.results__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.pane-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 4px;
+  animation: page-in .35s var(--ease) both;
+}
+
+.match {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.match2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.kwlist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.kw-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+.kw-chip--ok {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.kw-chip--no {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
+
+.kw-chip .icon {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.6;
+}
+
+.opt-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.opt__text {
+  font-size: 14.5px;
+  line-height: 1.6;
+  min-height: 420px;
+}
+
+.change {
+  padding: 16px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.change+.change {
+  border-top: 1px solid var(--line);
+}
+
+.change__row {
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+}
+
+.change__row--before {
+  background: var(--bad-soft);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--bad) 60%, transparent);
+}
+
+.change__row--after {
+  background: var(--ok-soft);
+}
+
+.past {
+  margin-top: 36px;
+}
+
+@media (min-width: 769px) and (max-width: 1240px) {
+  .cv-inputs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .match {
+    grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  }
+
+  .opt-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+
+  .cv-inputs,
+  .match,
+  .match2,
+  .opt-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .results__head .row {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .analyzing__in {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .results__head .btn {
+    flex: 1;
+  }
+
+  .issue,
+  .change {
+    padding: 14px 16px;
+  }
+
+  .select--sm {
+    max-width: 160px;
+  }
+}

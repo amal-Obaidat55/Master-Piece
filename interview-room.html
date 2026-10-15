@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interview room — SpeakUp </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400..700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/shell.css">
+  <link rel="stylesheet" href="css/room.css">
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('hr_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = t;
+    } catch (e) { }
+  </script>
+</head>
+
+<body data-shell="none">
+  <div class="rm" id="rm">
+
+    <header class="rm__bar">
+      <a class="brand" href="dashboard.html" aria-label="SpeakUp  home"><svg class="brandMark" aria-hidden="true">
+          <use href="#i-logo" />
+        </svg><span class="brandName">SpeakUp </span></a>
+      <div class="rm__title truncate">Frontend Developer Practice</div>
+      <div class="rm__bar-end">
+        <div class="rm__clock" id="rm-clock" hidden title="Time left in this interview"><svg class="icon"
+            aria-hidden="true">
+            <use href="#i-timer" />
+          </svg><span class="tnum" id="rm-clock-t">15:00</span></div>
+        <button class="btn btn--sm rm__exit" type="button" data-open="modal-exit">Exit</button>
+      </div>
+    </header>
+
+    <main class="rm__main" id="main">
+
+      <ol id="questions" hidden>
+        <li data-hint="Mention your education, skills, and interests." data-time="120">Tell me about yourself and your
+          journey into software development.</li>
+        <li data-hint="Think about scope and reassignment." data-time="120">What is the difference between let, const,
+          and var in JavaScript?</li>
+        <li data-hint="Explain the situation, your action, and the result." data-time="120">Describe a challenge you
+          faced in a project and how you solved it.</li>
+        <li data-hint="You can mention CSS media queries and flexible layouts." data-time="120">How do you make a
+          website responsive for mobile devices?</li>
+        <li data-hint="Connect your strengths to the role." data-time="120">Why would you be a good fit for this role?
+        </li>
+      </ol>
+
+      <section class="lobby" id="s-lobby" aria-labelledby="lobby-h">
+        <div class="lobby__intro">
+          <h1 class="display lobby__h" id="lobby-h">Ready when you are</h1>
+          <p class="lead rm__muted">Interview for Frontend Developer.</p>
+          <dl class="lobby__facts">
+            <div>
+              <dt>Type</dt>
+              <dd>Technical Interview</dd>
+            </div>
+            <div>
+              <dt>Level</dt>
+              <dd>Beginner</dd>
+            </div>
+            <div>
+              <dt>Language</dt>
+              <dd>English</dd>
+            </div>
+            <div>
+              <dt>Questions</dt>
+              <dd>5</dd>
+            </div>
+            <div>
+              <dt>Time limit</dt>
+              <dd>15 min</dd>
+            </div>
+          </dl>
+          <ol class="lobby__how">
+            <li>Each question appears on its own. Take a moment, then start answering.</li>
+            <li>Answer out loud the way you would on the day.</li>
+            <li>Press Done to move on. You get your report after the last question.</li>
+          </ol>
+        </div>
+
+        <div class="lobby__check">
+          <div class="rm__card">
+            <h2 class="h3">Check your microphone</h2>
+            <div class="meter-box">
+              <div class="meter-box__top"><span id="mic-status">Not checked yet</span><span class="pill"
+                  id="mic-pill">Off</span></div>
+              <div class="level" aria-hidden="true"><i id="mic-level"></i></div>
+              <p class="small rm__muted" id="mic-help">Click the button, allow access, then say a few words. The bar
+                should move.</p>
+            </div>
+            <div class="row" style="--gap:10px">
+              <button class="btn btnAccent" type="button" id="btn-mic"><svg class="icon" aria-hidden="true">
+                  <use href="#i-mic" />
+                </svg><span>Test microphone</span></button>
+              <button class="btn rm__light btnOutline" type="button" id="btn-cam" aria-pressed="false"><svg class="icon"
+                  aria-hidden="true">
+                  <use href="#i-camera" />
+                </svg><span>Show camera</span></button>
+            </div>
+            <div class="cam" id="cam" hidden><video id="cam-video" autoplay muted playsinline></video></div>
+
+            <label class="switch"><input type="checkbox" id="opt-read" checked><span>Read questions aloud</span></label>
+            <label class="switch"><input type="checkbox" id="opt-type"><span>I will type my answers
+                instead</span></label>
+          </div>
+
+          <button class="btn btnAccent lagreBtn btn--block" type="button" id="btn-begin" disabled><svg class="icon"
+              aria-hidden="true">
+              <use href="#i-play" />
+            </svg><span>Start interview</span></button>
+          <p class="small rm__muted center" id="begin-note">Test your microphone, or choose to type your answers.</p>
+        </div>
+      </section>
+
+      <section class="stage" id="s-room" hidden aria-label="Interview">
+        <div class="stage__top">
+          <div class="progress" aria-hidden="true"><i id="q-progress"></i></div>
+          <span class="small rm__muted tnum" id="q-count"></span>
+        </div>
+
+        <div class="stage__grid">
+          <div class="stage__q" id="q-card" aria-live="polite">
+            <p class="q__label" id="q-label">Question</p>
+            <h2 class="q__text" id="q-text"></h2>
+            <p class="q__hint" id="q-hint" hidden></p>
+            <div class="q__tools">
+              <button class="btn btn--sm rm__light btnOutline" type="button" id="btn-say"><svg class="icon"
+                  aria-hidden="true">
+                  <use href="#i-speaker" />
+                </svg> Hear it again</button>
+            </div>
+          </div>
+
+          <div class="stage__a">
+            <div class="answer" id="ans-voice">
+              <div class="answer__top">
+                <span class="rec" id="rec-state"><i></i><span id="rec-label">Ready</span></span>
+                <span class="answer__time tnum" id="a-time">0:00</span>
+              </div>
+              <div class="answer__wave"><span class="wave wave--room"
+                  id="room-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              </div>
+              <div class="transcript">
+                <span class="small rm__muted">Your words will appear here as you speak, if your browser supports
+                  it.</span>
+              </div>
+            </div>
+
+            <div class="answer" id="ans-type" hidden>
+              <label class="small rm__muted" for="type-input">Type your answer</label>
+              <textarea class="textarea rm__textarea" id="type-input" rows="9"
+                placeholder="Write the answer you would say out loud."></textarea>
+              <div class="row between"><span class="small rm__muted tnum" id="a-time-t">0:00</span><span
+                  class="small rm__muted tnum" id="type-count"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage__ctrl">
+          <button class="btn rm__light btnOutline" type="button" id="btn-skip" data-open="modal-skip"><svg class="icon"
+              aria-hidden="true">
+              <use href="#i-skip" />
+            </svg> Skip question</button>
+          <button class="rec-btn" type="button" id="btn-rec" aria-label="Start answering"><span
+              class="rec-btn__dot"></span><span class="rec-btn__label" id="rec-btn-label">Start
+              answering</span></button>
+          <button class="btn btnAccent" type="button" id="btn-done" disabled><span id="done-label">Done</span><svg
+              class="icon" aria-hidden="true">
+              <use href="#i-arrow-right" />
+            </svg></button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="modal-exit" role="dialog" aria-modal="true" aria-labelledby="modal-exit-t" hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-exit-t" data-title>Leave the interview?</h2><button class="iconBtn" type="button"
+          data-close aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <p class="muted">Your answers so far are saved. You can resume this interview later from your dashboard.</p>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Keep going</button>
+        <a class="btn btn--danger" href="dashboard.html">Leave interview</a>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-skip" role="dialog" aria-modal="true" aria-labelledby="modal-skip-t" hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-skip-t" data-title>Skip this question?</h2><button class="iconBtn" type="button"
+          data-close aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <p class="muted">It will count as unanswered in your report.</p>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--primary" type="button" data-confirm id="skip-confirm">Skip question</button>
+      </div>
+    </div>
+  </div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"
+    focusable="false">
+    <symbol id="i-logo" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="9" fill="#FFD93D" stroke="none" />
+      <path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#0D1128" stroke-width="3.2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24">
+      <path d="M12 4 2.8 20h18.4z" />
+      <path d="M12 10v4.5M12 17.4v.2" />
+    </symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24">
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24">
+      <rect x="2.5" y="6" width="13" height="12" rx="2.5" />
+      <path d="m15.5 10.5 6-3.5v10l-6-3.5" />
+    </symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 12.5 3 3 5-6" />
+    </symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24">
+      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" />
+      <circle cx="12" cy="12" r="3" />
+    </symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24">
+      <path
+        d="M3 3l18 18M10.6 5.7A9.6 9.6 0 0 1 12 5.5c6 0 9.5 6.5 9.5 6.5a16 16 0 0 1-3.2 3.9M6.6 7.1A16.3 16.3 0 0 0 2.5 12S6 18.5 12 18.5a9.5 9.5 0 0 0 4-.9M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5M12 7.8v.2" />
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24">
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7" />
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24">
+      <path d="M7 4.5v15l12-7.5z" />
+    </symbol>
+    <symbol id="i-skip" viewBox="0 0 24 24">
+      <path d="m5 5 9 7-9 7z" />
+      <path d="M19 5v14" />
+    </symbol>
+    <symbol id="i-speaker" viewBox="0 0 24 24">
+      <path d="M4 10v4h4l5 4V6L8 10z" />
+      <path d="M16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11" />
+    </symbol>
+    <symbol id="i-timer" viewBox="0 0 24 24">
+      <circle cx="12" cy="13.5" r="7.5" />
+      <path d="M12 9.5v4l2.5 1.5M9.5 3h5" />
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6 6 18" />
+    </symbol>
+  </svg>
+
+  <script src="js/main.js"></script>
+  <script src="js/room.js"></script>
+</body>
+
+</html>

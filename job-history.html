@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Job History — SpeakUp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400..700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/shell.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/jobs.css">
+  <script>document.documentElement.classList.add('js'); try { document.documentElement.dataset.theme = localStorage.getItem('hr_theme') || 'light' } catch (e) { }</script>
+</head>
+
+<body data-shell="app" data-audience="candidate">
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar__top"><a class="brand" href="index.html" aria-label="SpeakUp home"><svg class="brandMark"
+            aria-hidden="true">
+            <use href="#i-logo" />
+          </svg><span class="brandName">SpeakUp</span></a><button class="iconBtn menu-close" type="button"
+          data-action="menu-close" aria-label="Close menu"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button></div>
+      <nav class="side-nav" aria-label="Main navigation"><a class="side-link" href="dashboard.html"
+          title="Dashboard"><svg class="icon" aria-hidden="true">
+            <use href="#i-dashboard" />
+          </svg><span class="side-label">Dashboard</span></a><a class="side-link" href="interview-setup.html"
+          title="New interview"><svg class="icon" aria-hidden="true">
+            <use href="#i-mic" />
+          </svg><span class="side-label">New interview</span></a><a class="side-link" href="cv-analyzer.html"
+          title="CV analyzer"><svg class="icon" aria-hidden="true">
+            <use href="#i-file" />
+          </svg><span class="side-label">CV analyzer</span></a><a class="side-link" href="history.html"
+          title="History"><svg class="icon" aria-hidden="true">
+            <use href="#i-clock" />
+          </svg><span class="side-label">History</span></a><a class="side-link is-active" href="find-jobs.html"
+          title="Find Jobs" aria-current="page"><svg class="icon" aria-hidden="true">
+            <use href="#i-target" />
+          </svg><span class="side-label">Find Jobs</span></a><a class="side-link" href="job-details.html"
+          title="Job Details"><svg class="icon" aria-hidden="true">
+            <use href="#i-file" />
+          </svg><span class="side-label">Job Details</span></a><a class="side-link" href="my-applications.html"
+          title="My Applications"><svg class="icon" aria-hidden="true">
+            <use href="#i-check-circle" />
+          </svg><span class="side-label">My Applications</span></a><a class="side-link" href="ai-training-plan.html"
+          title="AI Training Plan"><svg class="icon" aria-hidden="true">
+            <use href="#i-bolt" />
+          </svg><span class="side-label">AI Training Plan</span></a><a class="side-link" href="find-experts.html"
+          title="Find Experts"><svg class="icon" aria-hidden="true">
+            <use href="#i-user" />
+          </svg><span class="side-label">Find Experts</span></a><a class="side-link" href="expert-profile.html"
+          title="Expert Profile"><svg class="icon" aria-hidden="true">
+            <use href="#i-user" />
+          </svg><span class="side-label">Expert Profile</span></a><a class="side-link" href="book-a-session.html"
+          title="Book a Session"><svg class="icon" aria-hidden="true">
+            <use href="#i-calendar" />
+          </svg><span class="side-label">Book a Session</span></a><a class="side-link" href="my-sessions.html"
+          title="My Sessions"><svg class="icon" aria-hidden="true">
+            <use href="#i-clock" />
+          </svg><span class="side-label">My Sessions</span></a><a class="side-link" href="notifications.html"
+          title="Notifications"><svg class="icon" aria-hidden="true">
+            <use href="#i-bell" />
+          </svg><span class="side-label">Notifications</span></a><a class="side-link" href="profile.html"
+          title="Profile"><svg class="icon" aria-hidden="true">
+            <use href="#i-user" />
+          </svg><span class="side-label">Profile</span></a></nav>
+      <div class="side-foot"><a class="btn btnAccent btn--block side-cta" href="interview-setup.html"
+          aria-label="New interview"><svg class="icon" aria-hidden="true">
+            <use href="#i-plus" />
+          </svg><span class="side-label">New interview</span></a><a class="side-link" href="index.html"><svg
+            class="icon" aria-hidden="true">
+            <use href="#i-logout" />
+          </svg><span class="side-label">Log out</span></a></div>
+    </aside>
+    <div class="app-main">
+      <header class="topbar">
+        <button class="iconBtn menu-btn" type="button" data-action="menu" aria-label="Open menu"><svg class="icon"
+            aria-hidden="true">
+            <use href="#i-menu" />
+          </svg></button>
+        <a class="brand brand--mobile" href="index.html" aria-label="SpeakUp  home"><svg class="brandMark"
+            aria-hidden="true">
+            <use href="#i-logo" />
+          </svg><span class="brandName">SpeakUp </span></a>
+        <span class="topbar__crumb">Job History</span>
+        <div class="topbar__spacer"></div>
+        <button class="iconBtn theme-btn" type="button" data-action="theme" aria-label="Switch theme"><span
+            class="i-sun"><svg class="icon" aria-hidden="true">
+              <use href="#i-sun" />
+            </svg></span><span class="i-moon"><svg class="icon" aria-hidden="true">
+              <use href="#i-moon" />
+            </svg></span></button>
+
+        <div class="dd">
+          <button class="iconBtn" type="button" data-dropdown="notif-panel" aria-label="Notifications"><svg class="icon"
+              aria-hidden="true">
+              <use href="#i-bell" />
+            </svg><span class="notif-dot"></span></button>
+          <div class="dropdown-panel notif" id="notif-panel" hidden>
+            <div class="dropdown-panel__head"><strong>Notifications</strong><button class="link small" type="button"
+                id="notif-read">Mark all read</button></div>
+            <div class="notif__list">
+              <a class="notif__item is-unread" href="dashboard.html"><span>Welcome to SpeakUp ! Your demo workspace is
+                  ready.</span><time class="small faint">Today</time></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="dd">
+          <button class="user-chip" type="button" data-dropdown="user-panel" aria-label="Account menu"><span
+              class="avatar">AM</span><span class="user-chip__name hide-sm">Alex Morgan</span><svg class="icon hide-sm"
+              aria-hidden="true">
+              <use href="#i-chevron-down" />
+            </svg></button>
+          <div class="dropdown-panel user-menu" id="user-panel" hidden>
+            <div class="user-menu__who"><strong>Alex Morgan</strong><span class="small muted">alex@example.com</span>
+            </div>
+            <a class="menu-item" href="profile.html"><svg class="icon" aria-hidden="true">
+                <use href="#i-user" />
+              </svg> Profile</a>
+            <a class="menu-item" href="admin.html"><svg class="icon" aria-hidden="true">
+                <use href="#i-shield" />
+              </svg> Admin panel</a>
+            <a class="menu-item" href="index.html"><svg class="icon" aria-hidden="true">
+                <use href="#i-logout" />
+              </svg> Log out</a>
+          </div>
+        </div>
+      </header>
+      <main class="page page-in jobs-page" id="main">
+        <div class="page-head">
+          <div class="page-head__title">
+            <h1 class="h1">Job History</h1>
+            <p class="lead">Recently viewed roles, so you can pick up where you left off.</p>
+          </div>
+        </div>
+        <div class="section-head">
+          <h2 class="h2-sm">Recently viewed</h2><button class="link" type="button" data-clear-history>Clear
+            history</button>
+        </div>
+        <div class="job-list" data-job-history>
+          <div class="panel empty-state"><span class="empty-state__icon"><svg class="icon">
+                <use href="#i-clock" />
+              </svg></span>
+            <h2>No viewed jobs yet</h2>
+            <p>Open a role from Find Jobs and it’ll be saved here.</p><a class="btn btnAccent"
+              href="find-jobs.html">Browse jobs</a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="scrim"></div><svg xmlns="http://www.w3.org/2000/svg"
+    style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+    <symbol id="i-logo" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="9" fill="#FFD93D" stroke="none" />
+      <path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#0D1128" stroke-width="3.2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24">
+      <path d="M12 4 2.8 20h18.4z" />
+      <path d="M12 10v4.5M12 17.4v.2" />
+    </symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24">
+      <path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15z" />
+      <path d="M10 21a2 2 0 0 0 4 0" />
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24">
+      <path d="M13 3 5 13.5h6L10 21l8-10.5h-6z" />
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M3.5 10h17M8 3v4M16 3v4" />
+    </symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 12.5 3 3 5-6" />
+    </symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24">
+      <path d="m6 9 6 6 6-6" />
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </symbol>
+    <symbol id="i-dashboard" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="7" height="9" rx="1.5" />
+      <rect x="14" y="3" width="7" height="5" rx="1.5" />
+      <rect x="14" y="12" width="7" height="9" rx="1.5" />
+      <rect x="3" y="16" width="7" height="5" rx="1.5" />
+    </symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24">
+      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" />
+      <circle cx="12" cy="12" r="3" />
+    </symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24">
+      <path
+        d="M3 3l18 18M10.6 5.7A9.6 9.6 0 0 1 12 5.5c6 0 9.5 6.5 9.5 6.5a16 16 0 0 1-3.2 3.9M6.6 7.1A16.3 16.3 0 0 0 2.5 12S6 18.5 12 18.5a9.5 9.5 0 0 0 4-.9M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+    </symbol>
+    <symbol id="i-file" viewBox="0 0 24 24">
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5M9 13h6M9 17h6" />
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5M12 7.8v.2" />
+    </symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24">
+      <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4" />
+      <path d="M15 8l4 4-4 4M19 12H9" />
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24">
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7" />
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24">
+      <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" />
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24">
+      <path d="M12 3 4.5 6v5.5c0 4.6 3.2 8 7.5 9.5 4.3-1.5 7.5-4.9 7.5-9.5V6z" />
+      <path d="m9 12 2.2 2.2L15.5 10" />
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    </symbol>
+    <symbol id="i-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="12" r="1.2" />
+    </symbol>
+    <symbol id="i-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21a8 8 0 0 1 16 0" />
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6 6 18" />
+    </symbol>
+  </svg>
+  <div class="toast" data-toast hidden></div>
+  <script src="js/main.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/navigation.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV analyzer — SpeakUp </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400..700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/shell.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/cv.css">
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('hr_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = t;
+    } catch (e) { }
+  </script>
+</head>
+
+<body data-shell="app" data-audience="candidate">
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar__top"><a class="brand" href="index.html" aria-label="SpeakUp home"><svg class="brandMark"
+            aria-hidden="true">
+            <use href="#i-logo" />
+          </svg><span class="brandName">SpeakUp</span></a><button class="iconBtn menu-close" type="button"
+          data-action="menu-close" aria-label="Close menu"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button></div>
+      <nav class="side-nav" aria-label="Main navigation"><a class="side-link" href="dashboard.html"
+          title="Dashboard"><svg class="icon" aria-hidden="true">
+            <use href="#i-dashboard" />
+          </svg><span class="side-label">Dashboard</span></a><a class="side-link" href="interview-setup.html"
+          title="New interview"><svg class="icon" aria-hidden="true">
+            <use href="#i-mic" />
+          </svg><span class="side-label">New interview</span></a><a class="side-link is-active" href="cv-analyzer.html"
+          title="CV analyzer" aria-current="page"><svg class="icon" aria-hidden="true">
+            <use href="#i-file" />
+          </svg><span class="side-label">CV analyzer</span></a><a class="side-link" href="history.html"
+          title="History"><svg class="icon" aria-hidden="true">
+            <use href="#i-clock" />
+          </svg><span class="side-label">History</span></a><a class="side-link" href="find-jobs.html"
+          title="Find Jobs"><svg class="icon" aria-hidden="true">
+            <use href="#i-target" />
+          </svg><span class="side-label">Find Jobs</span></a><a class="side-link" href="job-details.html"
+          title="Job Details"><svg class="icon" aria-hidden="true">
+            <use href="#i-file" />
+          </svg><span class="side-label">Job Details</span></a><a class="side-link" href="my-applications.html"
+          title="My Applications"><svg class="icon" aria-hidden="true">
+            <use href="#i-check-circle" />
+          </svg><span class="side-label">My Applications</span></a><a class="side-link" href="ai-training-plan.html"
+          title="AI Training Plan"><svg class="icon" aria-hidden="true">
+            <use href="#i-bolt" />
+          </svg><span class="side-label">AI Training Plan</span></a><a class="side-link" href="find-experts.html"
+          title="Find Experts"><svg class="icon" aria-hidden="true">
+            <use href="#i-user" />
+          </svg><span class="side-label">Find Experts</span></a><a class="side-link" href="expert-profile.html"
+          title="Expert Profile"><svg class="icon" aria-hidden="true">
+            <use href="#i-user" />
+          </svg><span class="side-label">Expert Profile</span></a><a class="side-link" href="book-a-session.html"
+          title="Book a Session"><svg class="icon" aria-hidden="true">
+            <use href="#i-calendar" />
+          </svg><span class="side-label">Book a Session</span></a><a class="side-link" href="my-sessions.html"
+          title="My Sessions"><svg class="icon" aria-hidden="true">
+            <use href="#i-clock" />
+          </svg><span class="side-label">My Sessions</span></a><a class="side-link" href="notifications.html"
+          title="Notifications"><svg class="icon" aria-hidden="true">
+            <use href="#i-bell" />
+          </svg><span class="side-label">Notifications</span></a><a class="side-link" href="profile.html"
+          title="Profile"><svg class="icon" aria-hidden="true">
+            <use href="#i-user" />
+          </svg><span class="side-label">Profile</span></a></nav>
+      <div class="side-foot"><a class="btn btnAccent btn--block side-cta" href="interview-setup.html"
+          aria-label="New interview"><svg class="icon" aria-hidden="true">
+            <use href="#i-plus" />
+          </svg><span class="side-label">New interview</span></a><a class="side-link" href="index.html"><svg
+            class="icon" aria-hidden="true">
+            <use href="#i-logout" />
+          </svg><span class="side-label">Log out</span></a></div>
+    </aside>
+    <div class="app-main">
+      <header class="topbar">
+        <button class="iconBtn menu-btn" type="button" data-action="menu" aria-label="Open menu"><svg class="icon"
+            aria-hidden="true">
+            <use href="#i-menu" />
+          </svg></button>
+        <a class="brand brand--mobile" href="index.html" aria-label="SpeakUp  home"><svg class="brandMark"
+            aria-hidden="true">
+            <use href="#i-logo" />
+          </svg><span class="brandName">SpeakUp </span></a>
+        <span class="topbar__crumb">CV analyzer</span>
+        <div class="topbar__spacer"></div>
+        <button class="iconBtn theme-btn" type="button" data-action="theme" aria-label="Switch theme"><span
+            class="i-sun"><svg class="icon" aria-hidden="true">
+              <use href="#i-sun" />
+            </svg></span><span class="i-moon"><svg class="icon" aria-hidden="true">
+              <use href="#i-moon" />
+            </svg></span></button>
+
+        <div class="dd">
+          <button class="iconBtn" type="button" data-dropdown="notif-panel" aria-label="Notifications"><svg class="icon"
+              aria-hidden="true">
+              <use href="#i-bell" />
+            </svg><span class="notif-dot"></span></button>
+          <div class="dropdown-panel notif" id="notif-panel" hidden>
+            <div class="dropdown-panel__head"><strong>Notifications</strong><button class="link small" type="button"
+                id="notif-read">Mark all read</button></div>
+            <div class="notif__list">
+              <a class="notif__item is-unread" href="dashboard.html"><span>Welcome to SpeakUp ! Your demo workspace is
+                  ready.</span><time class="small faint">Today</time></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="dd">
+          <button class="user-chip" type="button" data-dropdown="user-panel" aria-label="Account menu"><span
+              class="avatar">AM</span><span class="user-chip__name hide-sm">Alex Morgan</span><svg class="icon hide-sm"
+              aria-hidden="true">
+              <use href="#i-chevron-down" />
+            </svg></button>
+          <div class="dropdown-panel user-menu" id="user-panel" hidden>
+            <div class="user-menu__who"><strong>Alex Morgan</strong><span class="small muted">alex@example.com</span>
+            </div>
+            <a class="menu-item" href="profile.html"><svg class="icon" aria-hidden="true">
+                <use href="#i-user" />
+              </svg> Profile</a>
+            <a class="menu-item" href="admin.html"><svg class="icon" aria-hidden="true">
+                <use href="#i-shield" />
+              </svg> Admin panel</a>
+            <a class="menu-item" href="index.html"><svg class="icon" aria-hidden="true">
+                <use href="#i-logout" />
+              </svg> Log out</a>
+          </div>
+        </div>
+      </header>
+
+      <main class="page page-in" id="main">
+        <div class="page-head">
+          <div class="page-head__title">
+            <h1 class="h1">CV analyzer</h1>
+            <p class="lead">Compare your CV with a job description, then let the optimizer close the gaps.</p>
+          </div>
+        </div>
+
+        <form class="cv-inputs" id="cv-form" novalidate>
+          <section class="panel" aria-labelledby="t-cvsel">
+            <div class="panel__head">
+              <h2 class="panel__title" id="t-cvsel">1. Your CV</h2>
+            </div>
+            <div class="panel__body stack" style="--gap:16px">
+              <div class="dropzone" id="dz">
+                <input type="file" id="cv-file" accept=".pdf,.doc,.docx" aria-label="Upload your CV">
+                <span class="dropzone__icon"><svg class="icon" aria-hidden="true">
+                    <use href="#i-upload" />
+                  </svg></span>
+                <strong data-dz-title>Drop your CV here</strong>
+                <span class="small muted" data-dz-sub>or click to choose a file</span>
+                <span class="small faint">PDF, DOC, DOCX, up to 5 MB</span>
+              </div>
+              <div class="field__error" id="cv-error" data-static role="alert" hidden></div>
+
+              <div>
+                <h3 class="small muted" style="margin-bottom:8px;font-weight:600">Or use a saved CV</h3>
+                <div class="saved" role="radiogroup" aria-label="Saved CVs">
+                  <label class="saved__item" data-row>
+                    <input type="radio" name="savedCv" value="cv-1">
+                    <span class="item__badge"><svg class="icon" aria-hidden="true">
+                        <use href="#i-file" />
+                      </svg></span>
+                    <span class="item__main"><span class="item__title truncate">sample-resume.pdf</span><span
+                        class="item__meta">Uploaded Oct 10, 2026</span></span>
+                    <button class="iconBtn" type="button" data-open="modal-delete-cv"
+                      aria-label="Delete sample-resume.pdf"><svg class="icon" aria-hidden="true">
+                        <use href="#i-trash" />
+                      </svg></button>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" aria-labelledby="t-jd">
+            <div class="panel__head">
+              <h2 class="panel__title" id="t-jd">2. The job</h2>
+              <div class="row" style="--gap:8px">
+                <select class="select select--sm" id="saved-jd" aria-label="Load a saved job description">
+                  <option value="">Load a saved description</option>
+                  <option value="1" data-title="Junior Frontend Developer"
+                    data-text="Looking for a junior developer with HTML, CSS, JavaScript, responsive design, and teamwork skills.">
+                    Junior Frontend Developer</option>
+                </select>
+              </div>
+            </div>
+            <div class="panel__body stack" style="--gap:16px">
+              <div class="field">
+                <label class="field__label" for="jobTitle">Job title<span class="opt">Optional</span></label>
+                <input class="input" id="jobTitle" name="jobTitle" type="text" maxlength="100"
+                  placeholder="The role you are applying for">
+              </div>
+              <div class="field">
+                <div class="row between"><label class="field__label" for="jobDescription">Job description</label><span
+                    class="small faint tnum" id="jd-count"></span></div>
+                <textarea class="textarea" id="jobDescription" name="jobDescription" rows="9" required maxlength="8000"
+                  placeholder="Paste the full job posting here."
+                  data-msg="Paste the job description to compare your CV with."></textarea>
+              </div>
+              <div class="row between">
+                <button class="btn btnGhost btn--sm" type="button" data-toast="Job description saved.">Save this
+                  description</button>
+                <button class="btn btnAccent lagreBtn" type="submit" id="btn-analyze"><svg class="icon"
+                    aria-hidden="true">
+                    <use href="#i-spark" />
+                  </svg> Analyze my CV</button>
+              </div>
+            </div>
+          </section>
+        </form>
+
+        <section class="panel analyzing" id="analyzing" hidden aria-live="polite">
+          <div class="panel__body analyzing__in">
+            <div class="analyzing__doc" aria-hidden="true"><i class="ln w60"></i><i class="ln"></i><i
+                class="ln s"></i><i class="ln"></i><i class="ln"></i><i class="ln s"></i><span class="cv__scan"></span>
+            </div>
+            <div class="stack" style="--gap:6px">
+              <h2 class="h3">Reading your CV</h2>
+              <p class="muted">Comparing it with the job description. This usually takes under a minute.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="results" id="results" hidden aria-labelledby="t-results">
+          <div class="results__head">
+            <div class="stack" style="--gap:4px">
+              <h2 class="h2" id="t-results">Your results</h2>
+              <p class="muted">Frontend Developer · sample-resume.pdf · Oct 10, 2026</p>
+            </div>
+            <div class="row">
+              <button class="btn btnOutline btn--sm" type="button" id="btn-reanalyze"><svg class="icon"
+                  aria-hidden="true">
+                  <use href="#i-refresh" />
+                </svg> Analyze again</button>
+              <a class="btn btn--primary btn--sm" href="interview-setup.html"><svg class="icon" aria-hidden="true">
+                  <use href="#i-mic" />
+                </svg> Practice for this job</a>
+            </div>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="Results">
+            <button type="button" role="tab" aria-selected="true" aria-controls="pane-match">Match</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="pane-opt" tabindex="-1">Optimized
+              CV</button>
+          </div>
+
+          <div id="pane-match" role="tabpanel" class="pane-tab">
+            <div class="match">
+              <div class="panel match__score">
+                <div class="panel__body center stack" style="--gap:14px;align-items:center">
+                  <div class="ring ring--lg ring--ok" style="--v:76" role="img" aria-label="Score 76%"><svg
+                      viewBox="0 0 120 120" aria-hidden="true">
+                      <circle class="ring__track" cx="60" cy="60" r="52" pathLength="100" />
+                      <circle class="ring__fill" cx="60" cy="60" r="52" pathLength="100" />
+                    </svg><span class="ring__label">76%</span></div>
+                  <div><strong class="h3">Strong match</strong>
+                    <p class="muted small">Your CV has a good foundation. Add measurable achievements and tailor
+                      keywords to the target role.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel match__break">
+                <div class="panel__head">
+                  <h3 class="panel__title">Score breakdown</h3>
+                </div>
+                <div class="panel__body">
+                  <div class="meter-list">
+                    <div class="meter">
+                      <div class="meter__top"><span>Keywords</span><span>72%</span></div>
+                      <div class="bar">
+                        <div class="bar__fill bar__fill--ok" style="--w:72%"></div>
+                      </div>
+                    </div>
+                    <div class="meter">
+                      <div class="meter__top"><span>Experience</span><span>78%</span></div>
+                      <div class="bar">
+                        <div class="bar__fill bar__fill--ok" style="--w:78%"></div>
+                      </div>
+                    </div>
+                    <div class="meter">
+                      <div class="meter__top"><span>Formatting</span><span>82%</span></div>
+                      <div class="bar">
+                        <div class="bar__fill bar__fill--ok" style="--w:82%"></div>
+                      </div>
+                    </div>
+                    <div class="meter">
+                      <div class="meter__top"><span>Impact</span><span>70%</span></div>
+                      <div class="bar">
+                        <div class="bar__fill bar__fill--ok" style="--w:70%"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="match2">
+              <div class="panel">
+                <div class="panel__head">
+                  <h3 class="panel__title">Keywords in your CV</h3><span class="pill pill--ok">4</span>
+                </div>
+                <div class="panel__body">
+                  <div class="kwlist"><span class="kw-chip kw-chip--ok"><svg class="icon" aria-hidden="true">
+                        <use href="#i-check" />
+                      </svg>HTML</span><span class="kw-chip kw-chip--ok"><svg class="icon" aria-hidden="true">
+                        <use href="#i-check" />
+                      </svg>CSS</span><span class="kw-chip kw-chip--ok"><svg class="icon" aria-hidden="true">
+                        <use href="#i-check" />
+                      </svg>JavaScript</span><span class="kw-chip kw-chip--ok"><svg class="icon" aria-hidden="true">
+                        <use href="#i-check" />
+                      </svg>Responsive Design</span></div>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel__head">
+                  <h3 class="panel__title">Missing from your CV</h3><span class="pill pill--bad">3</span>
+                </div>
+                <div class="panel__body">
+                  <div class="kwlist"><span class="kw-chip kw-chip--no"><svg class="icon" aria-hidden="true">
+                        <use href="#i-plus" />
+                      </svg>Accessibility</span><span class="kw-chip kw-chip--no"><svg class="icon" aria-hidden="true">
+                        <use href="#i-plus" />
+                      </svg>Testing</span><span class="kw-chip kw-chip--no"><svg class="icon" aria-hidden="true">
+                        <use href="#i-plus" />
+                      </svg>Performance</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="match2">
+              <div class="panel">
+                <div class="panel__head">
+                  <h3 class="panel__title">What is working</h3>
+                </div>
+                <div class="panel__body">
+                  <ul class="bullets">
+                    <li><svg class="icon" aria-hidden="true">
+                        <use href="#i-check-circle" />
+                      </svg><span>Clear technical skills</span></li>
+                    <li><svg class="icon" aria-hidden="true">
+                        <use href="#i-check-circle" />
+                      </svg><span>Relevant project experience</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel__head">
+                  <h3 class="panel__title">What to fix</h3>
+                </div>
+                <div class="panel__body panel__body--flush">
+                  <div class="issue"><span class="pill pill--warn">Medium</span>
+                    <div><strong>Add measurable results</strong>
+                      <p>Include numbers or outcomes where possible.</p>
+                    </div>
+                  </div>
+                  <div class="issue"><span class="pill">Low</span>
+                    <div><strong>Tailor the summary</strong>
+                      <p>Match the summary to the target role.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="pane-opt" role="tabpanel" class="pane-tab" hidden>
+            <div id="opt-start" class="panel">
+              <div class="panel__body">
+                <div class="empty">
+                  <div class="empty__icon"><svg class="icon" aria-hidden="true">
+                      <use href="#i-spark" />
+                    </svg></div>
+                  <div class="empty__title">Make your CV fit this job</div>
+                  <p class="empty__text">The optimizer rewrites your CV to cover the missing keywords and fix the
+                    problems found above. It only uses facts that are already in your CV.</p>
+                  <div class="row"><button class="btn btnAccent" type="button" id="btn-optimize"><svg class="icon"
+                        aria-hidden="true">
+                        <use href="#i-spark" />
+                      </svg> Optimize my CV</button></div>
+                </div>
+              </div>
+            </div>
+            <div id="opt-result" hidden>
+              <div class="opt-grid">
+                <div class="panel">
+                  <div class="panel__head">
+                    <h3 class="panel__title">Optimized CV</h3>
+                    <div class="row" style="--gap:8px">
+                      <button class="btn btnGhost btn--sm" type="button" id="opt-copy"><svg class="icon"
+                          aria-hidden="true">
+                          <use href="#i-copy" />
+                        </svg> Copy</button>
+                      <button class="btn btn--primary btn--sm" type="button" id="opt-download"><svg class="icon"
+                          aria-hidden="true">
+                          <use href="#i-download" />
+                        </svg> Download</button>
+                    </div>
+                  </div>
+                  <div class="panel__body">
+                    <label class="sr-only" for="opt-text">Optimized CV text</label>
+                    <textarea class="textarea opt__text" id="opt-text"
+                      rows="22">Professional Summary
+Motivated junior frontend developer with hands-on experience in HTML, CSS, JavaScript, and responsive web design.</textarea>
+                    <p class="small faint" style="margin-top:8px">You can edit the text before you copy or download it.
+                    </p>
+                  </div>
+                </div>
+                <div class="panel">
+                  <div class="panel__head">
+                    <h3 class="panel__title">What changed</h3>
+                  </div>
+                  <div class="panel__body panel__body--flush">
+                    <div class="change"><strong>Summary</strong>
+                      <div class="change__row change__row--before">Original summary</div>
+                      <div class="change__row change__row--after">Clear, role-focused summary</div><span
+                        class="small muted">Highlights relevant skills.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel past" aria-labelledby="t-past">
+          <div class="panel__head">
+            <h2 class="panel__title" id="t-past">Past analyses</h2>
+          </div>
+          <div class="panel__body panel__body--flush">
+            <div class="empty">
+              <div class="empty__icon"><svg class="icon" aria-hidden="true">
+                  <use href="#i-file" />
+                </svg></div>
+              <div class="empty__title">No analyses yet</div>
+              <p class="empty__text">Run your first analysis and it will be saved here.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <nav class="bottom-nav" aria-label="Main">
+    <a class="bottom-nav__item" href="dashboard.html"><span class="bottom-nav__icon"><svg class="icon"
+          aria-hidden="true">
+          <use href="#i-dashboard" />
+        </svg></span><span>Dashboard</span></a>
+    <a class="bottom-nav__item bottom-nav__item--main" href="interview-setup.html"><span class="bottom-nav__icon"><svg
+          class="icon" aria-hidden="true">
+          <use href="#i-mic" />
+        </svg></span><span>Practice</span></a>
+    <a class="bottom-nav__item is-active" href="cv-analyzer.html" aria-current="page"><span
+        class="bottom-nav__icon"><svg class="icon" aria-hidden="true">
+          <use href="#i-file" />
+        </svg></span><span>CV analyzer</span></a>
+    <a class="bottom-nav__item" href="history.html"><span class="bottom-nav__icon"><svg class="icon" aria-hidden="true">
+          <use href="#i-clock" />
+        </svg></span><span>History</span></a>
+    <a class="bottom-nav__item" href="profile.html"><span class="bottom-nav__icon"><svg class="icon" aria-hidden="true">
+          <use href="#i-user" />
+        </svg></span><span>Profile</span></a>
+  </nav>
+  <div class="modal" id="modal-delete-cv" data-removes data-toast="CV deleted." role="dialog" aria-modal="true"
+    aria-labelledby="modal-delete-cv-t" hidden>
+    <div class="modal__dialog">
+      <div class="modal__head">
+        <h2 class="h3" id="modal-delete-cv-t" data-title>Delete this CV?</h2><button class="iconBtn" type="button"
+          data-close aria-label="Close"><svg class="icon" aria-hidden="true">
+            <use href="#i-x" />
+          </svg></button>
+      </div>
+      <div class="modal__body">
+        <p class="muted">The file will be removed from your account. Past analyses stay in your list.</p>
+      </div>
+      <div class="modal__foot"><button class="btn btnGhost" type="button" data-close>Cancel</button>
+        <button class="btn btn--danger" type="button" data-confirm>Delete CV</button>
+      </div>
+    </div>
+  </div>
+  <div class="scrim"></div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"
+    focusable="false">
+    <symbol id="i-logo" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="9" fill="#FFD93D" stroke="none" />
+      <path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#0D1128" stroke-width="3.2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24">
+      <path d="M12 4 2.8 20h18.4z" />
+      <path d="M12 10v4.5M12 17.4v.2" />
+    </symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24">
+      <path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15z" />
+      <path d="M10 21a2 2 0 0 0 4 0" />
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24">
+      <path d="M13 3 5 13.5h6L10 21l8-10.5h-6z" />
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M3.5 10h17M8 3v4M16 3v4" />
+    </symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 12.5 3 3 5-6" />
+    </symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24">
+      <path d="m6 9 6 6 6-6" />
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </symbol>
+    <symbol id="i-dashboard" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="7" height="9" rx="1.5" />
+      <rect x="14" y="3" width="7" height="5" rx="1.5" />
+      <rect x="14" y="12" width="7" height="9" rx="1.5" />
+      <rect x="3" y="16" width="7" height="5" rx="1.5" />
+    </symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24">
+      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" />
+      <circle cx="12" cy="12" r="3" />
+    </symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24">
+      <path
+        d="M3 3l18 18M10.6 5.7A9.6 9.6 0 0 1 12 5.5c6 0 9.5 6.5 9.5 6.5a16 16 0 0 1-3.2 3.9M6.6 7.1A16.3 16.3 0 0 0 2.5 12S6 18.5 12 18.5a9.5 9.5 0 0 0 4-.9M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+    </symbol>
+    <symbol id="i-file" viewBox="0 0 24 24">
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5M9 13h6M9 17h6" />
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5M12 7.8v.2" />
+    </symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24">
+      <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4" />
+      <path d="M15 8l4 4-4 4M19 12H9" />
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24">
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7" />
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24">
+      <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" />
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24">
+      <path d="M12 3 4.5 6v5.5c0 4.6 3.2 8 7.5 9.5 4.3-1.5 7.5-4.9 7.5-9.5V6z" />
+      <path d="m9 12 2.2 2.2L15.5 10" />
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    </symbol>
+    <symbol id="i-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="12" r="1.2" />
+    </symbol>
+    <symbol id="i-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21a8 8 0 0 1 16 0" />
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6 6 18" />
+    </symbol>
+  </svg>
+
+  <script src="js/main.js"></script>
+  <script src="js/cv.js"></script>
+  <script src="js/navigation.js"></script>
+</body>
+
+</html>
