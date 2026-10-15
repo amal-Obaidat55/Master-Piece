@@ -250,7 +250,7 @@ html.js .hero.is-ready .line>[data-hero-in] {
 .room {
   position: relative;
   background: rgba(255, 254, 255, 0.3);
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(8px);
   color: var(--text);
   border-radius: 28px;
   padding: 22px;
@@ -401,7 +401,7 @@ html[data-theme="dark"] .roomQuestion {
 
 .roomCritical span:nth-child(3) em {
   animation-delay: -2.8s;
-  background: var(--hl);
+  background: var(--ink);
 }
 
 @keyframes crit {
