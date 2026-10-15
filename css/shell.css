@@ -61,9 +61,8 @@ html[data-theme="dark"] .theme-btn .i-moon {
 
 .site-header.is-solid {
   color: var(--text);
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  background: color-mix(in srgb, var(--surface) 20%, transparent);
   backdrop-filter: blur(14px);
-  box-shadow: 0 1px 0 var(--line);
 }
 
 .site-header.is-hidden {
@@ -86,7 +85,8 @@ html[data-theme="dark"] .theme-btn .i-moon {
 
 .siteNav a:hover {
   opacity: 1;
-  background: rgba(127, 135, 180, .22);
+  background: rgba(229, 230, 235, 0.1);
+  backdrop-filter: blur(5px);
 }
 
 .siteHearderActions {
