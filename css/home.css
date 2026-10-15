@@ -243,14 +243,14 @@ html.js .hero.is-ready .line>[data-hero-in] {
   }
 }
 
-/* hero visual */
 .heroVisual {
   position: relative;
 }
 
 .room {
   position: relative;
-  background: var(--surface);
+  background: rgba(255, 254, 255, 0.3);
+  backdrop-filter: blur(1px);
   color: var(--text);
   border-radius: 28px;
   padding: 22px;
@@ -304,7 +304,7 @@ html[data-theme="dark"] .room {
 }
 
 .roomTimer {
-  color: var(--text-2);
+  color: white;
 }
 
 .roomQuestion {
@@ -354,7 +354,7 @@ html[data-theme="dark"] .roomQuestion {
 .roomWave {
   display: flex;
   justify-content: center;
-  color: var(--brand);
+  color: black;
   height: 56px;
   align-items: center;
 }
