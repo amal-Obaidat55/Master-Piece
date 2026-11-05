@@ -93,6 +93,22 @@
   const historyList = document.querySelector('[data-job-history]');
   if (historyList) { const entries = read('hr_job_history'); historyList.innerHTML = entries.length ? entries.map(x => jobCard(x.id, formatDate(new Date(x.viewed)))).join('') : '<div class="panel empty-state"><span class="empty-state__icon"><svg class="icon"><use href="#i-clock" /></svg></span><h2>No viewed jobs yet</h2><p>Open a role from Find Jobs and it’ll be saved here.</p><a class="btn btnAccent" href="find-jobs.html">Browse jobs</a></div>'; }
 
+  const applicationHistory = document.querySelector('[data-application-history]');
+  if (applicationHistory) {
+    const applications = read('hr_applications');
+    if (applications.length) {
+      applicationHistory.innerHTML = applications.map(app => {
+        const role = jobs[app.id] || { title: app.title || 'Job application', company: app.company || 'Company' };
+        const status = app.status || 'In review';
+        const state = status === 'Interview' || /accepted|approved|invited/i.test(status) ? 'accepted' : /reject|declin|not selected/i.test(status) ? 'rejected' : 'review';
+        const label = state === 'accepted' ? 'Interview invitation' : state === 'rejected' ? 'Not selected' : 'Under review';
+        const next = state === 'accepted' ? 'The employer would like to meet you.' : state === 'rejected' ? 'This application is closed.' : 'Waiting for an update from the employer.';
+        const applied = app.applied ? formatDate(new Date(app.applied)) : 'Date not available';
+        return `<article class="application-history-card"><div class="company-logo">${role.company[0]}</div><div class="application-history-card__main"><div class="application-history-card__top"><div><h3>${role.title}</h3><p class="muted">${role.company}</p></div><span class="application-state application-state--${state}">${label}</span></div><div class="application-history-card__foot"><span>Applied ${applied}</span><span>${next}</span></div></div><a class="btn btnOutline btn--sm" href="job-details.html?job=${encodeURIComponent(app.id || '')}">View role</a></article>`;
+      }).join('');
+    }
+  }
+
   const applicationTable = document.querySelector('.data-table tbody');
   if (applicationTable) read('hr_applications').forEach(app => {
     const j = jobs[app.id]; if (!j || applicationTable.querySelector(`[data-app-id="${app.id}"]`) || [...applicationTable.rows].some(r => r.innerText.includes(j.company))) return;
@@ -130,6 +146,13 @@
 
 
   const expertAvailability = read('hr_expert_availability');
+  const hasSavedExpertAvailability = !!(
+    expertAvailability &&
+    !Array.isArray(expertAvailability) &&
+    typeof expertAvailability === 'object' &&
+    expertAvailability.fields &&
+    typeof expertAvailability.fields === 'object'
+  );
   const expertProfile = read('hr_expert_profile');
   if (expertProfile && (location.pathname.endsWith('expert-profile.html') || location.pathname.endsWith('book-a-session.html'))) {
     const name = expertProfile.name || 'Maya Chen';
@@ -162,8 +185,8 @@
     const day = date.toLocaleDateString('en-US', { weekday: 'long' });
     const fields = expertAvailability?.fields || {};
     const defaultHours = { Monday: ['09:00', '15:00'], Wednesday: ['10:00', '16:00'], Thursday: ['10:00', '16:00'] };
-    if (expertAvailability && !fields[`day-${day}`]) return [];
-    if (!expertAvailability && !defaultHours[day]) return [];
+    if (hasSavedExpertAvailability && !fields[`day-${day}`]) return [];
+    if (!hasSavedExpertAvailability && !defaultHours[day]) return [];
     const start = fields[`${day.toLowerCase()}-from`] || defaultHours[day]?.[0] || '10:00';
     const end = fields[`${day.toLowerCase()}-to`] || defaultHours[day]?.[1] || '16:00';
     const toMinutes = value => Number(value.slice(0, 2)) * 60 + Number(value.slice(3, 5));
@@ -173,6 +196,23 @@
     for (let time = toMinutes(start); time <= toMinutes(end) - sessionMinutes; time += 90) results.push(toLabel(time));
     return results.slice(0, 5);
   };
+  if (calendar) {
+    const currentMonthHasOpenDates = Array.from({ length: 31 }, (_, index) => {
+      const day = new Date(shownMonth.getFullYear(), shownMonth.getMonth(), index + 1);
+      return day.getMonth() === shownMonth.getMonth() && dateKey(day) >= dateKey(today) && slotsForDate(dateKey(day)).length > 0;
+    }).some(Boolean);
+    if (!currentMonthHasOpenDates) {
+      const firstOpenDate = Array.from({ length: 180 }, (_, index) => {
+        const day = new Date(today);
+        day.setDate(day.getDate() + index);
+        return dateKey(day);
+      }).find(key => slotsForDate(key).length > 0);
+      if (firstOpenDate) {
+        const nextAvailableMonth = new Date(`${firstOpenDate}T12:00:00`);
+        shownMonth = new Date(nextAvailableMonth.getFullYear(), nextAvailableMonth.getMonth(), 1);
+      }
+    }
+  }
   const monthLabel = document.querySelector('[data-month-label]');
   function renderCalendar() {
     if (!calendar) return;
@@ -246,6 +286,28 @@
       document.querySelectorAll('.time-slot').forEach(x => x.classList.toggle('selected', x === b));
       const book = document.querySelector('[data-book]');
       if (book) book.disabled = false;
+      const continueButton = document.querySelector('[data-book-details]');
+      if (continueButton) continueButton.disabled = false;
+    }
+    if (b.hasAttribute('data-book-details')) {
+      if (!selectedDate || !selectedTime) return;
+      const date = new Date(`${selectedDate}T12:00:00`);
+      const heading = document.querySelector('.page-head h1')?.textContent || 'Book a session with Maya';
+      const summary = document.querySelector('.apply-card p')?.textContent || 'with Maya Chen · 45 minutes';
+      const expert = summary.match(/with\s+(.+?)\s+·/)?.[1] || heading.replace(/^Book a session with\s+/i, '');
+      const duration = summary.split('·').pop()?.trim() || '45 minutes';
+      const draft = {
+        date: selectedDate,
+        dateLabel: date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
+        time: selectedTime,
+        expert,
+        duration,
+        service: document.querySelector('.apply-card h3')?.textContent.trim() || 'Portfolio review',
+        price: document.querySelector('.apply-card .price')?.textContent.trim() || '$75'
+      };
+      try { sessionStorage.setItem('hr_session_booking_draft', JSON.stringify(draft)); } catch { }
+      location.href = '../Job seeker/session-details.html';
+      return;
     }
     if (b.hasAttribute('data-book')) {
       if (!selectedDate || !selectedTime) return;

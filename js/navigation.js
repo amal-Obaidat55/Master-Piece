@@ -15,7 +15,7 @@
       ['employer-dashboard.html', 'Dashboard', 'i-dashboard'], ['company-profile.html', 'Company Profile', 'i-user'],
       ['manage-jobs.html', 'Manage Jobs', 'i-file'], ['create-edit-job.html', 'Create / Edit Job', 'i-plus'],
       ['applicants.html', 'Applicants', 'i-user'], ['ai-candidate-matching.html', 'AI Candidate Matching', 'i-bolt'],
-      ['candidate-profile.html', 'Candidate Profile', 'i-check-circle'], ['recruitment-pipeline.html', 'Recruitment Pipeline', 'i-target'],
+      ['recruitment-pipeline.html', 'Recruitment Pipeline', 'i-target'],
       ['interview-management.html', 'Interview Management', 'i-calendar'], ['employer-notifications.html', 'Notifications', 'i-bell'],
       ['employer-settings.html', 'Settings', 'i-shield']
     ],

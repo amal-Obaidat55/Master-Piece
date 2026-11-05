@@ -1,6 +1,69 @@
 function $(selector, root) { return (root || document).querySelector(selector); }
 function $$(selector, root) { return Array.from((root || document).querySelectorAll(selector)); }
 
+/* Give the admin sidebar the same draggable microphone scroll control as the app sidebars. */
+(function initAdminSidebarScrollbar() {
+  if (document.body.dataset.shell !== 'admin') return;
+  const sidebar = document.querySelector('.sidebar');
+  const nav = sidebar && sidebar.querySelector('.side-nav');
+  if (!sidebar || !nav || sidebar.querySelector('.sidebar-scroll-track')) return;
+
+  const track = document.createElement('div');
+  track.className = 'sidebar-scroll-track';
+  track.setAttribute('role', 'scrollbar');
+  track.setAttribute('aria-label', 'Scroll admin navigation');
+  track.setAttribute('aria-controls', 'admin-sidebar-navigation');
+  track.setAttribute('aria-orientation', 'vertical');
+  track.tabIndex = 0;
+  track.innerHTML = '<span class="sidebar-scroll-thumb"><svg class="icon" aria-hidden="true"><use href="#i-mic" /></svg></span>';
+  nav.id = 'admin-sidebar-navigation';
+  sidebar.appendChild(track);
+
+  const thumb = track.firstElementChild;
+  const update = () => {
+    const max = nav.scrollHeight - nav.clientHeight;
+    const thumbHeight = Math.min(track.clientHeight, 50);
+    const travel = Math.max(0, track.clientHeight - thumbHeight);
+    thumb.style.height = `${thumbHeight}px`;
+    thumb.style.top = `${max > 0 ? (nav.scrollTop / max) * travel : 0}px`;
+    track.hidden = max <= 0;
+    track.setAttribute('aria-valuemin', '0');
+    track.setAttribute('aria-valuemax', `${Math.max(0, max)}`);
+    track.setAttribute('aria-valuenow', `${Math.round(nav.scrollTop)}`);
+  };
+
+  nav.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  requestAnimationFrame(update);
+
+  let startY = 0;
+  let startScroll = 0;
+  track.addEventListener('pointerdown', event => {
+    if (event.button !== 0) return;
+    track.setPointerCapture(event.pointerId);
+    startY = event.clientY;
+    startScroll = nav.scrollTop;
+    if (event.target === track) {
+      const max = nav.scrollHeight - nav.clientHeight;
+      nav.scrollTop = max * Math.max(0, Math.min(1, (event.clientY - track.getBoundingClientRect().top) / track.clientHeight));
+      startY = event.clientY;
+      startScroll = nav.scrollTop;
+    }
+    event.preventDefault();
+  });
+  track.addEventListener('pointermove', event => {
+    if (!track.hasPointerCapture(event.pointerId)) return;
+    const travel = track.clientHeight - thumb.offsetHeight;
+    nav.scrollTop = startScroll + (event.clientY - startY) / Math.max(1, travel) * (nav.scrollHeight - nav.clientHeight);
+  });
+  track.addEventListener('keydown', event => {
+    if (!['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End'].includes(event.key)) return;
+    const step = event.key === 'PageDown' || event.key === 'PageUp' ? nav.clientHeight : 60;
+    event.preventDefault();
+    nav.scrollTop = event.key === 'Home' ? 0 : event.key === 'End' ? nav.scrollHeight : nav.scrollTop + (event.key === 'ArrowUp' || event.key === 'PageUp' ? -step : step);
+  });
+})();
+
 
 function getTheme() { return document.documentElement.dataset.theme || 'light'; }
 
@@ -136,6 +199,99 @@ document.addEventListener('click', function (e) {
   closeModal(modal);
   showToast(save.dataset.save, 'ok');
 });
+
+/* Admin page access controls: ask for a user-facing reason before disabling a role page. */
+(function initRolePageAccess() {
+  const storageKey = 'speakup_disabled_role_pages';
+  const readDisabled = () => {
+    try { return JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch { return {}; }
+  };
+  const writeDisabled = value => {
+    try { localStorage.setItem(storageKey, JSON.stringify(value)); } catch {}
+  };
+  const normalizePath = path => decodeURIComponent(path).replace(/\\/g, '/').toLowerCase();
+
+  if (document.body.dataset.shell === 'admin') {
+    const modal = document.querySelector('#modal-disable-page');
+    if (!modal) return;
+    let pending = null;
+    const disabled = readDisabled();
+    const getCardPath = card => {
+      const link = card.querySelector('a[href]');
+      return link ? normalizePath(new URL(link.href, location.href).pathname) : null;
+    };
+    document.querySelectorAll('.role-page-card').forEach(card => {
+      const toggle = card.querySelector('.switch input[type="checkbox"]');
+      const path = getCardPath(card);
+      if (!toggle || !path) return;
+      toggle.checked = !disabled[path];
+      toggle.addEventListener('change', () => {
+        if (toggle.checked) {
+          const next = readDisabled();
+          delete next[path];
+          writeDisabled(next);
+          showToast('Page access restored.', 'ok');
+          return;
+        }
+        toggle.checked = true;
+        pending = {
+          card,
+          path,
+          title: card.querySelector('h3')?.textContent.trim() || 'this page',
+          role: card.closest('section.panel')?.querySelector('.panel__head h2')?.textContent.trim() || 'Workspace'
+        };
+        document.querySelector('#disable-page-name').textContent = `${pending.title} · ${pending.role}`;
+        document.querySelector('#disable-page-reason').value = '';
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        document.querySelector('#disable-page-reason').focus();
+      });
+    });
+    modal.addEventListener('click', event => {
+      if (event.target.closest('[data-disable-cancel]') || event.target === modal) {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        pending = null;
+      }
+      if (!event.target.closest('[data-disable-confirm]')) return;
+      const reasonField = document.querySelector('#disable-page-reason');
+      const reason = reasonField.value.trim();
+      if (!pending || !reason) {
+        reasonField.setCustomValidity('Enter a reason so the user understands why access was disabled.');
+        reasonField.reportValidity();
+        reasonField.addEventListener('input', () => reasonField.setCustomValidity(''), { once: true });
+        return;
+      }
+      const next = readDisabled();
+      next[pending.path] = { reason, title: pending.title, role: pending.role, updatedAt: Date.now() };
+      writeDisabled(next);
+      pending.card.querySelector('.switch input[type="checkbox"]').checked = false;
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      pending = null;
+      showToast('Page disabled. The user will see your reason.', 'ok');
+    });
+  }
+
+  if (document.body.dataset.shell !== 'app') return;
+  const disabled = readDisabled()[normalizePath(location.pathname)];
+  if (!disabled) return;
+  const audience = document.body.dataset.audience;
+  const homeHref = audience === 'expert' ? 'expert-dashboard.html'
+    : audience === 'employer' ? 'employer-dashboard.html'
+      : /\/Expert\//i.test(location.pathname) ? '../Job seeker/dashboard.html' : 'dashboard.html';
+  document.body.insertAdjacentHTML('afterbegin', `
+    <section class="page-disabled-screen" role="alertdialog" aria-modal="true" aria-labelledby="page-disabled-title">
+      <div class="page-disabled-card">
+        <span class="page-disabled-icon" aria-hidden="true">!</span>
+        <p class="eyebrow">${disabled.role || 'Workspace'} page unavailable</p>
+        <h1 id="page-disabled-title">${disabled.title || 'This page'} is temporarily unavailable</h1>
+        <p class="page-disabled-reason"></p>
+        <a class="btn btnAccent" href="${homeHref}">Go to dashboard</a>
+      </div>
+    </section>`);
+  document.querySelector('.page-disabled-reason').textContent = disabled.reason;
+})();
 
 
 function showToast(message, type) {

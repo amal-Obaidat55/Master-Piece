@@ -9,7 +9,7 @@ function showRoute() {
   views.forEach(function (v) { v.hidden = (v !== view); });
 
   sideLinks.forEach(function (link) {
-    const on = (link.getAttribute('href') === 'admin-' + name+'.html');
+    const on = (link.getAttribute('href') === 'admin-' + name + '.html');
     link.classList.toggle('is-active', on);
     if (on) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
   });

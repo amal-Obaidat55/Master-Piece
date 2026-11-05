@@ -12,9 +12,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400..700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/shell.css">
-  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/shell.css">
+  <link rel="stylesheet" href="../css/home.css">
   <script>
     document.documentElement.classList.add('js');
     try {
@@ -33,6 +33,7 @@
         </svg><span class="brandName">SpeakUp</span></a>
       <nav class="siteNav hide-sm" aria-label="Main"><a href="index.html#how">How it works</a><a
           href="index.html#features">Features</a><a href="index.html#for">Who it’s for</a><a
+          href="index.html#for-employers">Employers</a><a href="index.html#for-experts">Experts</a><a
           href="index.html#faq">FAQ</a></nav>
       <div class="siteHearderActions">
         <button class="iconBtn theme-btn" type="button" data-action="theme" aria-label="Switch theme"><span
@@ -51,7 +52,8 @@
     </div>
     <div class="mobileMenu" id="mobileMenu" hidden>
       <nav aria-label="Mobile"><a href="index.html#how">How it works</a><a href="index.html#features">Features</a><a
-          href="index.html#for">Who it’s for</a><a href="index.html#faq">FAQ</a><a href="auth.html">Log in</a></nav>
+          href="index.html#for">Who it’s for</a><a href="index.html#for-employers">Employers</a><a
+          href="index.html#for-experts">Experts</a><a href="index.html#faq">FAQ</a><a href="auth.html">Log in</a></nav>
     </div>
   </header>
 
@@ -59,7 +61,7 @@
 
     <section class="hero" id="hero">
       <video autoplay playsinline muted loop class="backVideo">
-        <source src="videos/purple5.mp4" type="video/mp4">
+        <source src="../videos/purple5.mp4" type="video/mp4">
       </video>
       <div class="over"></div>
       <div class="container heroGrid">
@@ -361,6 +363,55 @@
       </div>
     </section>
 
+    <section class="section partner-section partner-section--employer" id="for-employers">
+      <div class="container partner-layout" data-reveal>
+        <div class="partner-copy">
+          <span class="eyebrow">FOR EMPLOYERS</span>
+          <h2 class="h1">Build your team with the right people.</h2>
+          <p class="lead">Share opportunities, review applications, and keep your hiring process organized in one workspace. Interview practice is reserved for job seekers.</p>
+          <ul class="partner-points">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle" /></svg><span>Create and manage job listings</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle" /></svg><span>Review applicants and compare role fit</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle" /></svg><span>Track candidates through your hiring pipeline</span></li>
+          </ul>
+          <a class="btn btnAccent" href="../Employer/employer-dashboard.html">Explore employer workspace <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="partner-preview partner-preview--employer" aria-label="Preview of the employer workspace">
+          <div class="partner-preview__top"><span class="partner-preview__icon"><svg class="icon" aria-hidden="true"><use href="#i-briefcase" /></svg></span><span class="pill">HIRING WORKSPACE</span></div>
+          <h3 class="h3">Everything in one place</h3>
+          <p class="muted">A clearer view of your hiring activity.</p>
+          <div class="partner-preview__row"><span class="partner-preview__mark">01</span><span><strong>Job listings</strong><small>Publish and manage open roles</small></span><svg class="icon" aria-hidden="true"><use href="#i-chevron-down" /></svg></div>
+          <div class="partner-preview__row"><span class="partner-preview__mark">02</span><span><strong>Applicants</strong><small>Review applications and profiles</small></span><svg class="icon" aria-hidden="true"><use href="#i-chevron-down" /></svg></div>
+          <div class="partner-preview__row"><span class="partner-preview__mark">03</span><span><strong>Hiring pipeline</strong><small>Keep each candidate's progress clear</small></span><svg class="icon" aria-hidden="true"><use href="#i-chevron-down" /></svg></div>
+          <div class="partner-preview__note"><span class="partner-preview__pulse"></span>Built for hiring teams</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section partner-section partner-section--expert" id="for-experts">
+      <div class="container partner-layout partner-layout--reverse" data-reveal>
+        <div class="partner-copy">
+          <span class="eyebrow">FOR EXPERTS</span>
+          <h2 class="h1">Share your experience. Help someone move forward.</h2>
+          <p class="lead">Connect with job seekers through focused career coaching sessions and practical guidance.</p>
+          <ul class="partner-points">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle" /></svg><span>Showcase your expertise and career background</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle" /></svg><span>Set your availability for coaching bookings</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle" /></svg><span>Manage sessions, reviews, and your profile</span></li>
+          </ul>
+          <a class="btn btnAccent" href="../Expert/expert-dashboard.html">Explore expert workspace <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="partner-preview partner-preview--expert" aria-label="Preview of the expert workspace">
+          <div class="partner-preview__top"><span class="partner-preview__icon"><svg class="icon" aria-hidden="true"><use href="#i-spark" /></svg></span><span class="pill">EXPERT WORKSPACE</span></div>
+          <h3 class="h3">Make every session count</h3>
+          <p class="muted">Your coaching work, organized around you.</p>
+          <div class="expert-mini-profile"><span class="expert-mini-profile__avatar">E</span><span><strong>Your expert profile</strong><small>Experience · specialties · reviews</small></span><span class="expert-mini-profile__status">Ready</span></div>
+          <div class="expert-mini-calendar"><div class="expert-mini-calendar__head"><strong>Your availability</strong><span>This week</span></div><div class="expert-mini-calendar__days"><span><b>M</b><i></i></span><span><b>T</b><i></i></span><span class="is-open"><b>W</b><i></i></span><span><b>T</b><i></i></span><span class="is-open"><b>F</b><i></i></span><span><b>S</b><i></i></span><span><b>S</b><i></i></span></div></div>
+          <div class="partner-preview__note"><span class="partner-preview__pulse"></span>One-to-one career coaching</div>
+        </div>
+      </div>
+    </section>
+
     <section class="section faq" id="faq">
       <div class="container faq__grid">
         <div class="section__head" data-reveal>
@@ -453,15 +504,17 @@
         <div class="site-footer__cols">
           <div>
             <h4>Product</h4><a href="index.html#how">How it works</a><a href="index.html#features">Features</a><a
-              href="index.html#faq">FAQ</a>
+              href="index.html#faq">FAQ</a><a href="index.html#for-employers">For employers</a><a
+              href="index.html#for-experts">For experts</a>
           </div>
           <div>
             <h4>Practice</h4><a href="interview-setup.html">Interview setup</a><a href="cv-analyzer.html">CV
               analyzer</a><a href="history.html">History</a>
           </div>
           <div>
-            <h4>Account</h4><a href="auth.html">Log in</a><a href="auth.html?mode=signup">Create account</a><a
-              href="dashboard.html">Dashboard</a><a href="expert-dashboard.html">Expert workspace</a>
+          <h4>Account</h4><a href="auth.html">Log in</a><a href="auth.html?mode=signup">Create account</a><a
+            href="dashboard.html">Dashboard</a><a href="../Employer/employer-dashboard.html">Employer workspace</a><a
+            href="../Expert/expert-dashboard.html">Expert workspace</a>
           </div>
         </div>
       </div>
@@ -555,8 +608,9 @@
     </symbol>
   </svg>
 
-  <script src="js/main.js"></script>
-  <script src="js/home.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/home.js"></script>
+  <script src="../js/route-reveal.js"></script>
 </body>
 
 </html>
